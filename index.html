@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service Blueprint · Ecosistema "Escuelas de la Vida"</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            lavenderGlow: '#9681D9',
+            royalViolet: '#463181',
+            midnightSapphire: '#082674',
+            biolumCobalt: '#3365CA',
+            lagoonTeal: '#2C7B91',
+            pondEmerald: '#0F4456',
+            lotusPink: '#E29BC5',
+            lotusSoft: '#F3C6E2',
+            starlight: '#F4F2FA',
+            mistText: '#D5D0EC',
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --lavender-glow: #9681D9;
+      --royal-violet: #463181;
+      --midnight-sapphire: #082674;
+      --biolum-cobalt: #3365CA;
+      --lagoon-teal: #2C7B91;
+      --pond-emerald: #0F4456;
+      --lotus-pink: #E29BC5;
+      --forest-canopy: #1B5E4A;
+      --botanical-jade: #2E8B6E;
+      --meadow-mint: #52B788;
+      --dew-leaf: #A8E6CF;
+    }
+
+    body {
+      background-color: #082674;
+      color: #F4F2FA;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-image:
+        radial-gradient(circle at 15% 12%, rgba(150, 129, 217, 0.36) 0%, transparent 42%),
+        radial-gradient(circle at 86% 24%, rgba(51, 101, 202, 0.34) 0%, transparent 46%),
+        radial-gradient(circle at 18% 72%, rgba(44, 123, 145, 0.30) 0%, transparent 48%),
+        radial-gradient(circle at 84% 86%, rgba(82, 183, 136, 0.24) 0%, transparent 46%),
+        linear-gradient(180deg, #06184A 0%, #082674 32%, #13367A 68%, #0F4456 100%);
+      background-attachment: fixed;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Cielo estrellado con parpadeo sutil */
+    .starfield-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background-image:
+        radial-gradient(2px 2px at 40px 60px, #FFFFFF, rgba(255,255,255,0)),
+        radial-gradient(2.5px 2.5px at 140px 180px, #F3C6E2, rgba(255,255,255,0)),
+        radial-gradient(1.8px 1.8px at 260px 95px, #FFFFFF, rgba(255,255,255,0)),
+        radial-gradient(2.2px 2.2px at 390px 230px, #A8E6CF, rgba(255,255,255,0)),
+        radial-gradient(1.5px 1.5px at 510px 70px, #FFFFFF, rgba(255,255,255,0)),
+        radial-gradient(2.4px 2.4px at 640px 190px, #9681D9, rgba(255,255,255,0)),
+        radial-gradient(1.8px 1.8px at 780px 110px, #FFFFFF, rgba(255,255,255,0)),
+        radial-gradient(2.5px 2.5px at 910px 260px, #F3C6E2, rgba(255,255,255,0));
+      background-repeat: repeat;
+      background-size: 980px 320px;
+      opacity: 0.78;
+      animation: starTwinkle 7s ease-in-out infinite alternate;
+    }
+
+    @keyframes starTwinkle {
+      0% { opacity: 0.58; }
+      100% { opacity: 0.92; }
+    }
+
+    .constellation-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .lotus-glow {
+      filter: drop-shadow(0 0 18px rgba(229, 152, 216, 0.65)) drop-shadow(0 0 38px rgba(150, 129, 217, 0.45));
+    }
+
+    .garden-canopy-left {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      width: 210px;
+      height: 460px;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.52;
+    }
+
+    .garden-canopy-right {
+      position: fixed;
+      top: 56px;
+      right: 0;
+      width: 210px;
+      height: 460px;
+      transform: scaleX(-1);
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.52;
+    }
+
+    /* Franja de lago y nenúfares reflejados al pie de la página */
+    .lake-horizon-band {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 25% 15%, rgba(82, 183, 136, 0.28) 0%, rgba(15, 68, 86, 0) 60%),
+        radial-gradient(ellipse at 75% 25%, rgba(226, 155, 197, 0.22) 0%, rgba(15, 68, 86, 0) 58%),
+        linear-gradient(180deg, rgba(10, 26, 58, 0.88) 0%, rgba(16, 62, 66, 0.92) 48%, rgba(6, 24, 46, 0.98) 100%);
+      border-top: 1px solid rgba(168, 230, 207, 0.35);
+    }
+
+    /* Tarjetas translúcidas de cristal del jardín nocturno */
+    .garden-card {
+      background: linear-gradient(155deg, rgba(70, 49, 129, 0.50) 0%, rgba(8, 38, 116, 0.62) 55%, rgba(15, 68, 86, 0.58) 100%);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(150, 129, 217, 0.32);
+      box-shadow: 0 14px 36px -8px rgba(4, 14, 48, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+      transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .garden-card:hover {
+      border-color: rgba(243, 198, 226, 0.54);
+      box-shadow: 0 18px 42px -6px rgba(4, 14, 48, 0.78), 0 0 26px rgba(150, 129, 217, 0.28);
+      transform: translateY(-2px);
+    }
+
+    .bp-cell {
+      background: rgba(9, 26, 68, 0.68);
+      border: 1px solid rgba(168, 230, 207, 0.24);
+      transition: all 0.22s ease;
+    }
+
+    .bp-cell:hover {
+      background: rgba(24, 68, 88, 0.9);
+      border-color: #A8E6CF;
+      box-shadow: 0 0 18px rgba(82, 183, 136, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .bp-cell.active-cell {
+      background: linear-gradient(145deg, rgba(70, 49, 129, 0.92), rgba(27, 94, 74, 0.85));
+      border-color: #F3C6E2;
+      box-shadow: 0 0 0 2px rgba(243, 198, 226, 0.45), 0 12px 26px rgba(4, 14, 48, 0.65);
+    }
+
+    /* Líneas de separación del Service Blueprint (Shostack, 1984) */
+    .bp-divider {
+      display: flex;
+      align-items: center;
+      margin: 14px 0;
+    }
+
+    .bp-divider::before,
+    .bp-divider::after {
+      content: '';
+      flex: 1;
+      border-top: 2px dashed;
+    }
+
+    .div-interaction::before,
+    .div-interaction::after {
+      border-color: rgba(226, 155, 197, 0.78);
+    }
+
+    .div-visibility::before,
+    .div-visibility::after {
+      border-color: rgba(150, 129, 217, 0.82);
+    }
+
+    .div-internal::before,
+    .div-internal::after {
+      border-color: rgba(82, 183, 136, 0.82);
+    }
+
+    .blueprint-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+    .blueprint-scroll::-webkit-scrollbar-track {
+      background: rgba(8, 38, 116, 0.6);
+      border-radius: 999px;
+    }
+    .blueprint-scroll::-webkit-scrollbar-thumb {
+      background: rgba(82, 183, 136, 0.55);
+      border-radius: 999px;
+    }
+
+    /* Reglas limpias para exportación a PDF */
+    @media print {
+      @page {
+        size: landscape;
+        margin: 8mm;
+      }
+      body {
+        background: #082674 !important;
+        color: #F4F2FA !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .no-print, .starfield-layer, .constellation-overlay, .garden-canopy-left, .garden-canopy-right {
+        display: none !important;
+      }
+      .blueprint-scroll {
+        overflow: visible !important;
+      }
+      .blueprint-matrix {
+        min-width: 100% !important;
+        width: 100% !important;
+      }
+      section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 18px !important;
+      }
+      .garden-card, .bp-cell {
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen antialiased selection:bg-lotusPink selection:text-midnightSapphire">
+
+  <!-- CAPA DE ESTRELLAS Y CONSTELACIONES LUMINOSAS -->
+  <div class="starfield-layer no-print" aria-hidden="true"></div>
+
+  <svg class="constellation-overlay no-print" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+    <defs>
+      <radialGradient id="starNodeGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+        <stop offset="45%" stop-color="#F3C6E2" stop-opacity="0.75"/>
+        <stop offset="100%" stop-color="#9681D9" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+
+    <!-- Constelación Superior Izquierda (Conciencia / Lira) -->
+    <g stroke="#9681D9" stroke-opacity="0.55" stroke-width="1.3" stroke-dasharray="3 3">
+      <line x1="95" y1="115" x2="175" y2="85"/>
+      <line x1="175" y1="85" x2="265" y2="132"/>
+      <line x1="265" y1="132" x2="215" y2="205"/>
+      <line x1="215" y1="205" x2="128" y2="188"/>
+      <line x1="128" y1="188" x2="95" y2="115"/>
+      <line x1="175" y1="85" x2="215" y2="205"/>
+    </g>
+    <g>
+      <circle cx="95" cy="115" r="8" fill="url(#starNodeGlow)"/><circle cx="95" cy="115" r="2.5" fill="#FFFFFF"/>
+      <circle cx="175" cy="85" r="10" fill="url(#starNodeGlow)"/><circle cx="175" cy="85" r="3" fill="#FFFFFF"/>
+      <circle cx="265" cy="132" r="8" fill="url(#starNodeGlow)"/><circle cx="265" cy="132" r="2.5" fill="#F3C6E2"/>
+      <circle cx="215" cy="205" r="9" fill="url(#starNodeGlow)"/><circle cx="215" cy="205" r="2.6" fill="#FFFFFF"/>
+      <circle cx="128" cy="188" r="7" fill="url(#starNodeGlow)"/><circle cx="128" cy="188" r="2.2" fill="#A8E6CF"/>
+    </g>
+
+    <!-- Constelación Superior Central (Flor del Loto Celestial) -->
+    <g stroke="#F3C6E2" stroke-opacity="0.42" stroke-width="1.2">
+      <line x1="610" y1="78" x2="685" y2="54"/>
+      <line x1="685" y1="54" x2="762" y2="82"/>
+      <line x1="762" y1="82" x2="725" y2="145"/>
+      <line x1="725" y1="145" x2="645" y2="142"/>
+      <line x1="645" y1="142" x2="610" y2="78"/>
+      <line x1="685" y1="54" x2="685" y2="165"/>
+    </g>
+    <g>
+      <circle cx="610" cy="78" r="7" fill="url(#starNodeGlow)"/><circle cx="610" cy="78" r="2.2" fill="#FFFFFF"/>
+      <circle cx="685" cy="54" r="11" fill="url(#starNodeGlow)"/><circle cx="685" cy="54" r="3.2" fill="#FFFFFF"/>
+      <circle cx="762" cy="82" r="8" fill="url(#starNodeGlow)"/><circle cx="762" cy="82" r="2.4" fill="#F3C6E2"/>
+      <circle cx="725" cy="145" r="7" fill="url(#starNodeGlow)"/><circle cx="725" cy="145" r="2.2" fill="#FFFFFF"/>
+      <circle cx="645" cy="142" r="7" fill="url(#starNodeGlow)"/><circle cx="645" cy="142" r="2.2" fill="#A8E6CF"/>
+      <circle cx="685" cy="165" r="8" fill="url(#starNodeGlow)"/><circle cx="685" cy="165" r="2.4" fill="#F3C6E2"/>
+    </g>
+
+    <!-- Constelación Superior Derecha (Empatía / Cisne) -->
+    <g stroke="#A8E6CF" stroke-opacity="0.48" stroke-width="1.3" stroke-dasharray="4 3">
+      <line x1="1140" y1="92" x2="1225" y2="125"/>
+      <line x1="1225" y1="125" x2="1320" y2="98"/>
+      <line x1="1225" y1="125" x2="1265" y2="210"/>
+      <line x1="1265" y1="210" x2="1355" y2="245"/>
+      <line x1="1225" y1="125" x2="1155" y2="195"/>
+    </g>
+    <g>
+      <circle cx="1140" cy="92" r="8" fill="url(#starNodeGlow)"/><circle cx="1140" cy="92" r="2.5" fill="#FFFFFF"/>
+      <circle cx="1225" cy="125" r="10" fill="url(#starNodeGlow)"/><circle cx="1225" cy="125" r="3" fill="#A8E6CF"/>
+      <circle cx="1320" cy="98" r="8" fill="url(#starNodeGlow)"/><circle cx="1320" cy="98" r="2.5" fill="#FFFFFF"/>
+      <circle cx="1265" cy="210" r="8" fill="url(#starNodeGlow)"/><circle cx="1265" cy="210" r="2.4" fill="#F3C6E2"/>
+      <circle cx="1355" cy="245" r="7" fill="url(#starNodeGlow)"/><circle cx="1355" cy="245" r="2.2" fill="#FFFFFF"/>
+      <circle cx="1155" cy="195" r="7" fill="url(#starNodeGlow)"/><circle cx="1155" cy="195" r="2.2" fill="#9681D9"/>
+    </g>
+
+    <!-- Constelación Inferior Izquierda (Armonía) -->
+    <g stroke="#9681D9" stroke-opacity="0.45" stroke-width="1.2">
+      <line x1="75" y1="620" x2="145" y2="575"/>
+      <line x1="145" y1="575" x2="195" y2="645"/>
+      <line x1="195" y1="645" x2="118" y2="710"/>
+      <line x1="118" y1="710" x2="75" y2="620"/>
+    </g>
+    <g>
+      <circle cx="75" cy="620" r="8" fill="url(#starNodeGlow)"/><circle cx="75" cy="620" r="2.4" fill="#FFFFFF"/>
+      <circle cx="145" cy="575" r="9" fill="url(#starNodeGlow)"/><circle cx="145" cy="575" r="2.6" fill="#F3C6E2"/>
+      <circle cx="195" cy="645" r="7" fill="url(#starNodeGlow)"/><circle cx="195" cy="645" r="2.2" fill="#A8E6CF"/>
+      <circle cx="118" cy="710" r="8" fill="url(#starNodeGlow)"/><circle cx="118" cy="710" r="2.4" fill="#FFFFFF"/>
+    </g>
+
+    <!-- Constelación Inferior Derecha (Serenidad) -->
+    <g stroke="#F3C6E2" stroke-opacity="0.45" stroke-width="1.2" stroke-dasharray="3 3">
+      <line x1="1245" y1="590" x2="1335" y2="555"/>
+      <line x1="1335" y1="555" x2="1385" y2="635"/>
+      <line x1="1385" y1="635" x2="1295" y2="695"/>
+      <line x1="1295" y1="695" x2="1245" y2="590"/>
+    </g>
+    <g>
+      <circle cx="1245" cy="590" r="8" fill="url(#starNodeGlow)"/><circle cx="1245" cy="590" r="2.4" fill="#FFFFFF"/>
+      <circle cx="1335" cy="555" r="10" fill="url(#starNodeGlow)"/><circle cx="1335" cy="555" r="2.8" fill="#F3C6E2"/>
+      <circle cx="1385" cy="635" r="8" fill="url(#starNodeGlow)"/><circle cx="1385" cy="635" r="2.4" fill="#FFFFFF"/>
+      <circle cx="1295" cy="695" r="8" fill="url(#starNodeGlow)"/><circle cx="1295" cy="695" r="2.4" fill="#A8E6CF"/>
+    </g>
+  </svg>
+
+  <!-- ÁRBOLES Y SAUCES DEL JARDÍN ENCANTADO EN LOS BORDES -->
+  <svg class="garden-canopy-left no-print" viewBox="0 0 240 540" fill="none" aria-hidden="true">
+    <path d="M-10 40C55 30 115 65 155 125" stroke="#2E8B6E" stroke-width="8" stroke-linecap="round"/>
+    <path d="M35 55C75 95 95 150 105 215" stroke="#1B5E4A" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="45" cy="48" rx="85" ry="44" fill="#1B5E4A" fill-opacity="0.72"/>
+    <ellipse cx="95" cy="82" rx="68" ry="36" fill="#2E8B6E" fill-opacity="0.58"/>
+    <ellipse cx="25" cy="96" rx="64" ry="34" fill="#0F4456" fill-opacity="0.75"/>
+    <path d="M58 68C48 165 56 260 44 355" stroke="#52B788" stroke-width="2" stroke-linecap="round"/>
+    <path d="M84 84C78 190 88 295 76 405" stroke="#2E8B6E" stroke-width="2" stroke-linecap="round"/>
+    <path d="M112 96C110 195 124 290 116 385" stroke="#9681D9" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M138 114C142 195 152 275 148 345" stroke="#52B788" stroke-width="1.6" stroke-linecap="round"/>
+    <circle cx="44" cy="355" r="3.5" fill="#A8E6CF"/>
+    <circle cx="76" cy="405" r="4" fill="#F3C6E2"/>
+    <circle cx="116" cy="385" r="3.5" fill="#9681D9"/>
+    <circle cx="148" cy="345" r="3" fill="#A8E6CF"/>
+  </svg>
+
+  <svg class="garden-canopy-right no-print" viewBox="0 0 240 540" fill="none" aria-hidden="true">
+    <path d="M-10 40C55 30 115 65 155 125" stroke="#2E8B6E" stroke-width="8" stroke-linecap="round"/>
+    <path d="M35 55C75 95 95 150 105 215" stroke="#1B5E4A" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="45" cy="48" rx="85" ry="44" fill="#1B5E4A" fill-opacity="0.72"/>
+    <ellipse cx="95" cy="82" rx="68" ry="36" fill="#2E8B6E" fill-opacity="0.58"/>
+    <ellipse cx="25" cy="96" rx="64" ry="34" fill="#0F4456" fill-opacity="0.75"/>
+    <path d="M58 68C48 165 56 260 44 355" stroke="#52B788" stroke-width="2" stroke-linecap="round"/>
+    <path d="M84 84C78 190 88 295 76 405" stroke="#2E8B6E" stroke-width="2" stroke-linecap="round"/>
+    <path d="M112 96C110 195 124 290 116 385" stroke="#9681D9" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M138 114C142 195 152 275 148 345" stroke="#52B788" stroke-width="1.6" stroke-linecap="round"/>
+    <circle cx="44" cy="355" r="3.5" fill="#A8E6CF"/>
+    <circle cx="76" cy="405" r="4" fill="#F3C6E2"/>
+    <circle cx="116" cy="385" r="3.5" fill="#9681D9"/>
+    <circle cx="148" cy="345" r="3" fill="#A8E6CF"/>
+  </svg>
+
+  <!-- NAVEGACIÓN SUPERIOR STICKY -->
+  <header class="sticky top-0 z-40 bg-[#071B54]/90 backdrop-blur-md border-b border-lavenderGlow/25">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 py-3.5 flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <!-- Ícono Flor de Loto Bioluminiscente -->
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-lavenderGlow/35 to-lagoonTeal/40 border border-lotusPink/40 flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(150,129,217,0.35)]">
+          <svg class="w-6 h-6" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6C15.5 11.5 15.5 18 18 24C20.5 18 20.5 11.5 18 6Z" fill="#F3C6E2"/>
+            <path d="M18 24C13 21.5 9.5 16.5 9.5 11C14 13 16.8 18 18 24Z" fill="#9681D9" fill-opacity="0.9"/>
+            <path d="M18 24C23 21.5 26.5 16.5 26.5 11C22 13 19.2 18 18 24Z" fill="#9681D9" fill-opacity="0.9"/>
+            <path d="M18 25C11.5 25 6.5 22 4.5 17.5C9.5 17.8 14.5 20.5 18 25Z" fill="#2C7B91"/>
+            <path d="M18 25C24.5 25 29.5 22 31.5 17.5C26.5 17.8 21.5 20.5 18 25Z" fill="#2C7B91"/>
+            <ellipse cx="18" cy="27.5" rx="11" ry="2.2" fill="#3365CA" fill-opacity="0.45"/>
+          </svg>
+        </div>
+        <div>
+          <span class="text-[11px] font-semibold uppercase tracking-widest text-lotusPink block">
+            Service Blueprint · Jardín de Aprendizaje Emocional en el Aula
+          </span>
+          <h1 class="font-serif text-xl sm:text-2xl font-semibold text-starlight leading-tight">
+            Ecosistema “Escuelas de la Vida”: Manejo Emocional en el Aula
+          </h1>
+        </div>
+      </div>
+
+      <!-- Enlaces rápidos a las 8 secciones + Exportar PDF -->
+      <div class="flex flex-wrap items-center gap-1.5 no-print">
+        <a href="#definicion" class="px-2.5 py-1.5 rounded-xl text-xs font-medium text-mistText hover:text-white hover:bg-royalViolet/60 transition">1. Definición</a>
+        <a href="#actores" class="px-2.5 py-1.5 rounded-xl text-xs font-medium text-mistText hover:text-white hover:bg-royalViolet/60 transition">2. Actores</a>
+        <a href="#blueprint" class="px-2.5 py-1.5 rounded-xl text-xs font-semibold bg-royalViolet/80 text-lotusSoft border border-lavenderGlow/40 hover:bg-royalViolet transition">3. Blueprint</a>
+        <a href="#fallas" class="px-2.5 py-1.5 rounded-xl text-xs font-medium text-mistText hover:text-white hover:bg-royalViolet/60 transition">4. Fallas y Soluciones</a>
+        <a href="#ia-mockups" class="px-2.5 py-1.5 rounded-xl text-xs font-medium text-mistText hover:text-white hover:bg-royalViolet/60 transition">5. IA &amp; Mockups</a>
+        <a href="#emociones" class="px-2.5 py-1.5 rounded-xl text-xs font-medium text-mistText hover:text-white hover:bg-royalViolet/60 transition">6. Emociones</a>
+        <a href="#metricas" class="px-2.5 py-1.5 rounded-xl text-xs font-medium text-mistText hover:text-white hover:bg-royalViolet/60 transition">7. Impacto</a>
+        <a href="#bibliografia" class="px-2.5 py-1.5 rounded-xl text-xs font-medium text-mistText hover:text-white hover:bg-royalViolet/60 transition">8. Bibliografía</a>
+
+        <button onclick="window.print()" class="ml-1 px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-lavenderGlow to-biolumCobalt text-white shadow-[0_0_18px_rgba(150,129,217,0.45)] hover:opacity-95 transition flex items-center gap-1.5 cursor-pointer">
+          <i class="fa-solid fa-file-pdf"></i>
+          <span>Exportar PDF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 py-8 space-y-12">
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 1: DEFINICIÓN DEL SERVICIO (EL JARDÍN QUE SE CULTIVA)         -->
+    <!-- ===================================================================== -->
+    <section id="definicion" class="garden-card rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+      <!-- Decoración botánica SVG de ramas de sauce y constelación -->
+      <svg class="absolute right-0 top-0 h-64 w-64 opacity-25 pointer-events-none" viewBox="0 0 240 240" fill="none">
+        <path d="M240 0C190 35 165 95 160 175" stroke="#9681D9" stroke-width="2" stroke-linecap="round"/>
+        <path d="M220 0C170 45 140 110 130 205" stroke="#2C7B91" stroke-width="2" stroke-linecap="round"/>
+        <path d="M240 30C205 65 190 120 188 190" stroke="#E29BC5" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="160" cy="175" r="4" fill="#F3C6E2"/>
+        <circle cx="130" cy="205" r="3.5" fill="#9681D9"/>
+        <circle cx="188" cy="190" r="3" fill="#2C7B91"/>
+      </svg>
+
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-royalViolet/70 border border-lavenderGlow/40 text-xs font-semibold text-lotusSoft mb-3">
+            <i class="fa-solid fa-spa text-lotusPink"></i>
+            <span>01 · Definición del Servicio</span>
+          </div>
+          <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-starlight leading-tight">
+            Un jardín emocional en el aula que florece con cada “materia para la vida”
+          </h2>
+          <p class="text-sm sm:text-base text-mistText leading-relaxed mt-3">
+            <strong>Ecosistema “Escuelas de la Vida”</strong> es un servicio educativo preventivo diseñado para aulas de secundaria básica (<strong>estudiantes de 12 a 15 años</strong>). Inspirado en la reforma educativa propuesta en <em>Conversaciones con Dios, Libro 2</em> (Walsch, 1997), sustituye la disciplina basada en el miedo y el castigo por el cultivo cotidiano de herramientas de autorregulación emocional, evitando que las tensiones diarias escalen a momentos de explosión o agresión en clase.
+          </p>
+        </div>
+
+        <!-- FLOR DE LOTO BIOLUMINISCENTE PROTAGONISTA SOBRE NENÚFAR -->
+        <div class="shrink-0 flex flex-col items-center justify-center rounded-3xl bg-[#06184A]/70 border border-lotusPink/35 px-6 py-4 relative">
+          <svg class="w-40 h-32 lotus-glow" viewBox="0 0 220 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="lotusCenterPetal" x1="110" y1="22" x2="110" y2="115" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FFF0F9"/>
+                <stop offset="45%" stop-color="#E598D8"/>
+                <stop offset="100%" stop-color="#9681D9"/>
+              </linearGradient>
+              <linearGradient id="lotusSidePetal" x1="110" y1="45" x2="110" y2="120" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#F3C6E2"/>
+                <stop offset="55%" stop-color="#C774B8"/>
+                <stop offset="100%" stop-color="#463181"/>
+              </linearGradient>
+              <linearGradient id="lotusOuterPetal" x1="110" y1="68" x2="110" y2="125" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#9681D9"/>
+                <stop offset="100%" stop-color="#2C7B91"/>
+              </linearGradient>
+              <radialGradient id="lilyPadGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#2E8B6E"/>
+                <stop offset="75%" stop-color="#144D47"/>
+                <stop offset="100%" stop-color="#0F4456"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Estrellas y destellos alrededor del loto -->
+            <circle cx="42" cy="34" r="2" fill="#FFFFFF"/>
+            <circle cx="178" cy="28" r="2.2" fill="#F3C6E2"/>
+            <circle cx="192" cy="66" r="1.6" fill="#A8E6CF"/>
+            <circle cx="28" cy="72" r="1.8" fill="#9681D9"/>
+            <line x1="42" y1="34" x2="110" y2="18" stroke="#9681D9" stroke-opacity="0.35" stroke-dasharray="2 3"/>
+            <line x1="110" y1="18" x2="178" y2="28" stroke="#F3C6E2" stroke-opacity="0.35" stroke-dasharray="2 3"/>
+
+            <!-- Reflejo de agua y nenúfar verde esmeralda -->
+            <ellipse cx="110" cy="134" rx="88" ry="18" fill="#3365CA" fill-opacity="0.22"/>
+            <ellipse cx="110" cy="126" rx="74" ry="15" fill="url(#lilyPadGrad)" stroke="#52B788" stroke-opacity="0.55" stroke-width="1.2"/>
+            <path d="M110 126 L168 119 L160 131 Z" fill="#06184A"/>
+
+            <!-- Pétalos exteriores -->
+            <path d="M110 122 C74 122 44 105 32 82 C58 84 86 98 110 122 Z" fill="url(#lotusOuterPetal)" stroke="#F3C6E2" stroke-opacity="0.4"/>
+            <path d="M110 122 C146 122 176 105 188 82 C162 84 134 98 110 122 Z" fill="url(#lotusOuterPetal)" stroke="#F3C6E2" stroke-opacity="0.4"/>
+
+            <!-- Pétalos medios -->
+            <path d="M110 121 C82 114 60 90 56 58 C80 68 98 92 110 121 Z" fill="url(#lotusSidePetal)" stroke="#FFF0F9" stroke-opacity="0.45"/>
+            <path d="M110 121 C138 114 160 90 164 58 C140 68 122 92 110 121 Z" fill="url(#lotusSidePetal)" stroke="#FFF0F9" stroke-opacity="0.45"/>
+
+            <!-- Pétalos internos -->
+            <path d="M110 120 C92 104 82 74 84 40 C98 58 106 88 110 120 Z" fill="url(#lotusCenterPetal)" stroke="#FFFFFF" stroke-opacity="0.55"/>
+            <path d="M110 120 C128 104 138 74 136 40 C122 58 114 88 110 120 Z" fill="url(#lotusCenterPetal)" stroke="#FFFFFF" stroke-opacity="0.55"/>
+
+            <!-- Pétalo central luminoso -->
+            <path d="M110 22 C96 52 96 90 110 120 C124 90 124 52 110 22 Z" fill="url(#lotusCenterPetal)" stroke="#FFFFFF" stroke-width="1.2"/>
+            <circle cx="110" cy="86" r="5" fill="#FFF7D6" fill-opacity="0.9"/>
+          </svg>
+          <span class="text-[11px] font-serif italic text-lotusSoft tracking-wide mt-1">
+            Floración de la Conciencia en el Aula
+          </span>
+        </div>
+      </div>
+
+      <!-- Propuesta de valor + Las 4 Materias que florecen -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+        <div class="lg:col-span-4 rounded-2xl bg-[#082674]/75 border border-biolumCobalt/45 p-5 flex flex-col justify-between">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-lotusPink block mb-1.5">Propuesta de Valor Central</span>
+            <h3 class="font-serif text-2xl text-starlight font-semibold mb-2">Prevenir antes de explotar</h3>
+            <p class="text-xs sm:text-sm text-mistText leading-relaxed">
+              Así como un jardín nocturno necesita agua, luz y cuidado constante para que broten los lotos, el aula integra pausas conscientes y talleres vivenciales asistidos por IA para que cada adolescente aprenda a reconocer, nombrar y tramitar lo que siente antes de herirse o herir a otros.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-lavenderGlow/20 flex items-center justify-between text-xs text-lotusSoft">
+            <span><i class="fa-solid fa-users mr-1.5 text-lotusPink"></i>Fase 1: 12 a 15 años</span>
+            <span><i class="fa-solid fa-school mr-1.5 text-lagoonTeal"></i>Entorno: Aula escolar</span>
+          </div>
+        </div>
+
+        <!-- Las 4 Materias para la Vida como flores cultivadas -->
+        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="rounded-2xl bg-royalViolet/45 border border-lavenderGlow/40 p-4 flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-lavenderGlow/25 border border-lavenderGlow/50 flex items-center justify-center shrink-0 text-lotusSoft">
+              <i class="fa-solid fa-eye"></i>
+            </div>
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-lavenderGlow">Materia 01 · Raíz</span>
+              <h4 class="font-serif text-xl font-semibold text-starlight">Conciencia Emocional</h4>
+              <p class="text-xs text-mistText leading-relaxed mt-1">
+                Detectar las señales físicas del enojo, la frustración o el miedo en el cuerpo antes de reaccionar impulsivamente.
+              </p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-biolumCobalt/30 border border-biolumCobalt/45 p-4 flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-biolumCobalt/30 border border-biolumCobalt/60 flex items-center justify-center shrink-0 text-lotusSoft">
+              <i class="fa-solid fa-feather-pointed"></i>
+            </div>
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-sky-300">Materia 02 · Tallo</span>
+              <h4 class="font-serif text-xl font-semibold text-starlight">Honestidad sin Juicio</h4>
+              <p class="text-xs text-mistText leading-relaxed mt-1">
+                Expresar lo que realmente se siente en un entorno seguro, sin máscaras sociales, burlas ni temor al castigo.
+              </p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-lagoonTeal/30 border border-lagoonTeal/50 p-4 flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-lagoonTeal/35 border border-lagoonTeal/60 flex items-center justify-center shrink-0 text-emerald-200">
+              <i class="fa-solid fa-compass"></i>
+            </div>
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-teal-300">Materia 03 · Capullo</span>
+              <h4 class="font-serif text-xl font-semibold text-starlight">Responsabilidad Afectiva</h4>
+              <p class="text-xs text-mistText leading-relaxed mt-1">
+                Comprender que aunque no elegimos la emoción que surge, sí somos responsables de cómo respondemos ante ella.
+              </p>
+            </div>
+          </div>
+
+          <div class="rounded-2xl bg-pondEmerald/55 border border-lotusPink/40 p-4 flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-lotusPink/20 border border-lotusPink/50 flex items-center justify-center shrink-0 text-lotusPink">
+              <i class="fa-solid fa-handshake-angle"></i>
+            </div>
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-lotusPink">Materia 04 · Flor de Loto</span>
+              <h4 class="font-serif text-xl font-semibold text-starlight">Resolución Pacífica</h4>
+              <p class="text-xs text-mistText leading-relaxed mt-1">
+                Practicar la escucha empática y el diálogo restaurativo para transformar los conflictos de aula en acuerdos compartidos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 2: ACTORES INVOLUCRADOS                                       -->
+    <!-- ===================================================================== -->
+    <section id="actores" class="space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-lotusPink">02 · Actores del Ecosistema</span>
+          <h2 class="font-serif text-3xl font-semibold text-starlight">Quienes cuidan y habitan el jardín del aula</h2>
+        </div>
+        <p class="text-xs text-mistText max-w-md">
+          Articulación entre personas e inteligencia artificial como asistente pedagógico (sin reemplazar el vínculo humano).
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+        <!-- Actor 1: Estudiantes -->
+        <div class="garden-card rounded-3xl p-5 flex flex-col justify-between border-t-4 border-t-lotusPink">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-11 h-11 rounded-2xl bg-lotusPink/20 border border-lotusPink/45 flex items-center justify-center text-lotusPink text-lg">
+                <i class="fa-solid fa-user-graduate"></i>
+              </span>
+              <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-lotusPink/15 text-lotusSoft">Usuario Principal</span>
+            </div>
+            <h3 class="font-serif text-2xl font-semibold text-starlight">Estudiantes (12–15 años)</h3>
+            <p class="text-xs text-mistText leading-relaxed mt-2">
+              Adolescentes en secundaria básica que atraviesan cambios emocionales intensos, presión grupal y exigencia académica.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-lavenderGlow/20 text-xs text-lotusSoft space-y-1">
+            <p><strong class="text-white">Rol:</strong> Identifican su estado emocional, participan en simulaciones y aplican pausas conscientes en la convivencia.</p>
+          </div>
+        </div>
+
+        <!-- Actor 2: Profesoras -->
+        <div class="garden-card rounded-3xl p-5 flex flex-col justify-between border-t-4 border-t-lagoonTeal">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-11 h-11 rounded-2xl bg-lagoonTeal/25 border border-lagoonTeal/50 flex items-center justify-center text-teal-200 text-lg">
+                <i class="fa-solid fa-chalkboard-user"></i>
+              </span>
+              <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-lagoonTeal/25 text-teal-200">Frontstage Continuo</span>
+            </div>
+            <h3 class="font-serif text-2xl font-semibold text-starlight">Profesoras de Aula</h3>
+            <p class="text-xs text-mistText leading-relaxed mt-2">
+              Guardianas del clima diario del salón; conocen las dinámicas del grupo y detectan señales tempranas de tensión.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-lavenderGlow/20 text-xs text-lotusSoft space-y-1">
+            <p><strong class="text-white">Rol:</strong> Reportan detonantes cotidianos, co-acompañan las sesiones y refuerzan los acuerdos en sus clases regulares.</p>
+          </div>
+        </div>
+
+        <!-- Actor 3: Talleristas -->
+        <div class="garden-card rounded-3xl p-5 flex flex-col justify-between border-t-4 border-t-lavenderGlow">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-11 h-11 rounded-2xl bg-lavenderGlow/25 border border-lavenderGlow/50 flex items-center justify-center text-lavenderGlow text-lg">
+                <i class="fa-solid fa-hands-holding-circle"></i>
+              </span>
+              <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-lavenderGlow/20 text-lotusSoft">Facilitación Vivencial</span>
+            </div>
+            <h3 class="font-serif text-2xl font-semibold text-starlight">Talleristas</h3>
+            <p class="text-xs text-mistText leading-relaxed mt-2">
+              Facilitadores especializados en educación socioemocional y comunicación no violenta que dinamizan las “materias para la vida”.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-lavenderGlow/20 text-xs text-lotusSoft space-y-1">
+            <p><strong class="text-white">Rol:</strong> Abren el círculo de confianza, guían los juegos de rol y traducen las herramientas a prácticas concretas.</p>
+          </div>
+        </div>
+
+        <!-- Actor 4: Asistente de Inteligencia Artificial -->
+        <div class="garden-card rounded-3xl p-5 flex flex-col justify-between border-t-4 border-t-biolumCobalt">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-11 h-11 rounded-2xl bg-biolumCobalt/30 border border-biolumCobalt/60 flex items-center justify-center text-sky-200 text-lg">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+              </span>
+              <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-biolumCobalt/30 text-sky-200">Copiloto IA (Backstage)</span>
+            </div>
+            <h3 class="font-serif text-2xl font-semibold text-starlight">Asistente de IA</h3>
+            <p class="text-xs text-mistText leading-relaxed mt-2">
+              Sistema pedagógico inteligente que opera detrás de escena apoyando la planeación, personalización y síntesis emocional.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-lavenderGlow/20 text-xs text-lotusSoft space-y-1">
+            <p><strong class="text-white">Rol:</strong> Crea dilemas cercanos a 12–15 años sin exponer casos reales, sintetiza el clima del aula y sugiere dinámicas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 3: SERVICE BLUEPRINT INTERACTIVO (SHOSTACK, 1984)             -->
+    <!-- ===================================================================== -->
+    <section id="blueprint" class="space-y-4">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-3">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-lotusPink">03 · Service Blueprint del Aula</span>
+          <h2 class="font-serif text-3xl font-semibold text-starlight">
+            Mapa del Servicio: Del Detonante a la Floración del Loto
+          </h2>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 no-print">
+          <div class="flex flex-wrap items-center gap-1 bg-[#061746]/85 border border-lavenderGlow/30 rounded-2xl p-1">
+            <button onclick="filterLayer('all')" id="flt-all" class="px-2.5 py-1 rounded-xl text-[11px] font-semibold bg-royalViolet text-white transition cursor-pointer">Todas las capas</button>
+            <button onclick="filterLayer('front')" id="flt-front" class="px-2.5 py-1 rounded-xl text-[11px] font-medium text-mistText hover:text-white transition cursor-pointer">Frontstage</button>
+            <button onclick="filterLayer('back')" id="flt-back" class="px-2.5 py-1 rounded-xl text-[11px] font-medium text-mistText hover:text-white transition cursor-pointer">Backstage</button>
+            <button onclick="filterLayer('ia')" id="flt-ia" class="px-2.5 py-1 rounded-xl text-[11px] font-medium text-mistText hover:text-white transition cursor-pointer">Soporte IA</button>
+          </div>
+          <p class="text-xs text-mistText flex items-center gap-1.5">
+            <i class="fa-solid fa-hand-pointer text-lotusPink"></i>
+            <span>Clic en una tarjeta para ver detalle</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Contenedor horizontal responsive del Service Blueprint -->
+      <div class="blueprint-scroll overflow-x-auto pb-3">
+        <div class="blueprint-matrix min-w-[1200px] rounded-3xl bg-[#061746]/85 border border-lavenderGlow/30 p-5 shadow-2xl">
+
+          <!-- ENCABEZADO DE LAS 5 ETAPAS (EVOLUCIÓN DEL LOTO EN EL JARDÍN) -->
+          <div class="grid grid-cols-[195px_repeat(5,minmax(190px,1fr))] gap-3 mb-4">
+            <div class="rounded-2xl bg-royalViolet/50 border border-lavenderGlow/35 p-3.5 flex flex-col justify-center">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-lotusPink">Ciclo del Jardín</span>
+              <span class="font-serif text-lg font-semibold text-starlight">5 Etapas en el Aula</span>
+            </div>
+
+            <!-- Etapa 1: Semilla -->
+            <div class="rounded-2xl bg-gradient-to-b from-royalViolet/65 to-midnightSapphire/80 border border-lavenderGlow/40 p-3.5">
+              <div class="flex items-center justify-between text-xs text-lotusPink mb-1">
+                <span class="font-bold uppercase tracking-wider">Etapa 01 · Semilla</span>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M12 19V11M12 11C12 7.5 15 5 18.5 5C18.5 8.5 16 11 12 11ZM12 13C12 10 9.5 8 6.5 8C6.5 11 8.8 13 12 13Z" stroke="#E598D8" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </div>
+              <h3 class="font-serif text-base font-semibold text-starlight">Detonante y Clima del Aula</h3>
+              <p class="text-[11px] text-mistText mt-0.5">Identificación preventiva de tensión</p>
+            </div>
+
+            <!-- Etapa 2: Brote -->
+            <div class="rounded-2xl bg-gradient-to-b from-biolumCobalt/45 to-midnightSapphire/80 border border-biolumCobalt/50 p-3.5">
+              <div class="flex items-center justify-between text-xs text-sky-300 mb-1">
+                <span class="font-bold uppercase tracking-wider">Etapa 02 · Brote</span>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M12 19V8M12 8C10 5 7 5 5 7C7 9 10 9 12 8ZM12 8C14 5 17 5 19 7C17 9 14 9 12 8Z" stroke="#93C5FD" stroke-width="1.8" stroke-linecap="round"/></svg>
+              </div>
+              <h3 class="font-serif text-base font-semibold text-starlight">Apertura y Pausa Consciente</h3>
+              <p class="text-[11px] text-mistText mt-0.5">Conciencia y honestidad sin juicio</p>
+            </div>
+
+            <!-- Etapa 3: Capullo -->
+            <div class="rounded-2xl bg-gradient-to-b from-lagoonTeal/50 to-midnightSapphire/80 border border-lagoonTeal/55 p-3.5">
+              <div class="flex items-center justify-between text-xs text-teal-200 mb-1">
+                <span class="font-bold uppercase tracking-wider">Etapa 03 · Capullo</span>
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M12 4C9.5 8 9.5 14 12 18C14.5 14 14.5 8 12 4Z" fill="#F3C6E2" fill-opacity="0.8"/><path d="M12 18C8.5 16 7 12.5 7.5 9.5C10 11 11.5 14.5 12 18ZM12 18C15.5 16 17 12.5 16.5 9.5C14 11 12.5 14.5 12 18Z" fill="#5EEAD4"/></svg>
+              </div>
+              <h3 class="font-serif text-base font-semibold text-starlight">Exploración Guiada con IA</h3>
+              <p class="text-[11px] text-mistText mt-0.5">Dilemas simulados y diálogo</p>
+            </div>
+
+            <!-- Etapa 4: Floración -->
+            <div class="rounded-2xl bg-gradient-to-b from-pondEmerald/75 to-midnightSapphire/80 border border-lotusPink/45 p-3.5">
+              <div class="flex items-center justify-between text-xs text-lotusSoft mb-1">
+                <span class="font-bold uppercase tracking-wider">Etapa 04 · Floración</span>
+                <svg class="w-6 h-6" viewBox="0 0 28 28" fill="none"><path d="M14 4C12 9 12 15 14 20C16 15 16 9 14 4Z" fill="#FFF0F9"/><path d="M14 20C10 18 7.5 14 7.5 9.5C11 11 13 15 14 20ZM14 20C18 18 20.5 14 20.5 9.5C17 11 15 15 14 20Z" fill="#E598D8"/><path d="M14 21C8.5 21 4.5 18.5 3 15C7 15.2 11 17.5 14 21ZM14 21C19.5 21 23.5 18.5 25 15C21 15.2 17 17.5 14 21Z" fill="#52B788"/></svg>
+              </div>
+              <h3 class="font-serif text-base font-semibold text-starlight">Regulación y Acuerdos</h3>
+              <p class="text-[11px] text-mistText mt-0.5">Responsabilidad y calma activa</p>
+            </div>
+
+            <!-- Etapa 5: Ecosistema -->
+            <div class="rounded-2xl bg-gradient-to-b from-royalViolet/55 via-lagoonTeal/40 to-midnightSapphire/80 border border-lavenderGlow/45 p-3.5">
+              <div class="flex items-center justify-between text-xs text-emerald-200 mb-1">
+                <span class="font-bold uppercase tracking-wider">Etapa 05 · Ecosistema</span>
+                <svg class="w-6 h-6" viewBox="0 0 28 28" fill="none"><ellipse cx="14" cy="21" rx="10" ry="3" fill="#2E8B6E"/><path d="M14 5C12.2 9.5 12.2 15 14 19.5C15.8 15 15.8 9.5 14 5Z" fill="#F3C6E2"/><path d="M14 19.5C10.5 17.5 8 14 8 10C11.2 11.5 13 15 14 19.5ZM14 19.5C17.5 17.5 20 14 20 10C16.8 11.5 15 15 14 19.5Z" fill="#9681D9"/></svg>
+              </div>
+              <h3 class="font-serif text-base font-semibold text-starlight">Transferencia Cotidiana</h3>
+              <p class="text-[11px] text-mistText mt-0.5">Convivencia diaria y seguimiento</p>
+            </div>
+          </div>
+
+          <!-- CAPA 1: EVIDENCIA FÍSICA Y TOUCHPOINTS -->
+          <div data-layer="front" class="bp-layer-row grid grid-cols-[195px_repeat(5,minmax(190px,1fr))] gap-3 items-stretch">
+            <div class="rounded-2xl bg-midnightSapphire/80 border border-lavenderGlow/30 p-3.5 flex flex-col justify-between">
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-lavenderGlow block">Capa 01 · Evidencia</span>
+                <h4 class="font-serif text-base font-semibold text-starlight mt-0.5">Evidencia Física &amp; Touchpoints</h4>
+              </div>
+              <p class="text-[11px] text-mistText mt-2">Elementos tangibles que el estudiante ve y toca en el aula.</p>
+            </div>
+
+            <button onclick="selectCell('ev1')" id="cell-ev1" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-lotusPink block mb-1"><i class="fa-solid fa-envelope-open-text mr-1"></i>Buzón del Jardín</span>
+              <p class="text-xs text-starlight leading-snug">Tarjetas anónimas donde el curso deposita tensiones o inquietudes del día.</p>
+            </button>
+
+            <button onclick="selectCell('ev2')" id="cell-ev2" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-sky-300 block mb-1"><i class="fa-solid fa-circle-nodes mr-1"></i>Círculo &amp; Termómetro</span>
+              <p class="text-xs text-starlight leading-snug">Sillas en círculo y baraja botánica para nombrar emociones sin juicio.</p>
+            </button>
+
+            <button onclick="selectCell('ev3')" id="cell-ev3" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-teal-200 block mb-1"><i class="fa-solid fa-display mr-1"></i>Pantalla de Escenarios IA</span>
+              <p class="text-xs text-starlight leading-snug">Proyección interactiva con historias ramificadas y cartas de “Materias para la Vida”.</p>
+            </button>
+
+            <button onclick="selectCell('ev4')" id="cell-ev4" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-lotusSoft block mb-1"><i class="fa-solid fa-book-bookmark mr-1"></i>Bitácora &amp; Mural</span>
+              <p class="text-xs text-starlight leading-snug">Diario personal de anclas de calma y Mural de Acuerdos del salón.</p>
+            </button>
+
+            <button onclick="selectCell('ev5')" id="cell-ev5" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-emerald-200 block mb-1"><i class="fa-solid fa-spa mr-1"></i>Señal de Pausa</span>
+              <p class="text-xs text-starlight leading-snug">Tarjeta de loto en el pupitre y rincón de calma accesible en clases y recreo.</p>
+            </button>
+          </div>
+
+          <!-- CAPA 2: ACCIONES DEL ESTUDIANTE (FRONTSTAGE USUARIO) -->
+          <div data-layer="front" class="bp-layer-row grid grid-cols-[195px_repeat(5,minmax(190px,1fr))] gap-3 items-stretch mt-3">
+            <div class="rounded-2xl bg-royalViolet/45 border border-lotusPink/35 p-3.5 flex flex-col justify-between">
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-lotusSoft block">Capa 02 · Usuario</span>
+                <h4 class="font-serif text-base font-semibold text-starlight mt-0.5">Acciones del Estudiante</h4>
+              </div>
+              <p class="text-[11px] text-mistText mt-2">Jóvenes de 12–15 años en el aula.</p>
+            </div>
+
+            <button onclick="selectCell('us1')" id="cell-us1" class="bp-cell text-left rounded-2xl p-3.5 border-l-4 border-l-lotusPink">
+              <span class="text-[11px] font-semibold text-lotusPink block mb-1">1. Acumulación</span>
+              <p class="text-xs text-starlight leading-snug">Sienten frustración académica, roces grupales o ganas de reaccionar impulsivamente.</p>
+            </button>
+
+            <button onclick="selectCell('us2')" id="cell-us2" class="bp-cell text-left rounded-2xl p-3.5 border-l-4 border-l-sky-300">
+              <span class="text-[11px] font-semibold text-sky-300 block mb-1">2. Pausa y Honestidad</span>
+              <p class="text-xs text-starlight leading-snug">Detienen la rutina, eligen su emoción en el termómetro y la nombran sin miedo.</p>
+            </button>
+
+            <button onclick="selectCell('us3')" id="cell-us3" class="bp-cell text-left rounded-2xl p-3.5 border-l-4 border-l-teal-300">
+              <span class="text-[11px] font-semibold text-teal-200 block mb-1">3. Juego de Rol Empático</span>
+              <p class="text-xs text-starlight leading-snug">Debaten dilemas ficticios de su edad y eligen respuestas no violentas en equipo.</p>
+            </button>
+
+            <button onclick="selectCell('us4')" id="cell-us4" class="bp-cell text-left rounded-2xl p-3.5 border-l-4 border-l-lotusSoft">
+              <span class="text-[11px] font-semibold text-lotusSoft block mb-1">4. Regulación y Pacto</span>
+              <p class="text-xs text-starlight leading-snug">Ensayan técnicas de respiración/desactivación y firman acuerdos de convivencia.</p>
+            </button>
+
+            <button onclick="selectCell('us5')" id="cell-us5" class="bp-cell text-left rounded-2xl p-3.5 border-l-4 border-l-emerald-300">
+              <span class="text-[11px] font-semibold text-emerald-200 block mb-1">5. Uso Cotidiano</span>
+              <p class="text-xs text-starlight leading-snug">Activan la señal de pausa en clase o recreo para dialogar antes de explotar.</p>
+            </button>
+          </div>
+
+          <!-- LÍNEA DE INTERACCIÓN -->
+          <div data-layer="front" class="bp-layer-row bp-divider div-interaction">
+            <span class="mx-3 px-4 py-1 rounded-full bg-royalViolet text-lotusSoft text-[11px] font-bold uppercase tracking-wider border border-lotusPink/60 shadow-[0_0_15px_rgba(226,155,197,0.35)]">
+              <i class="fa-solid fa-arrows-up-down mr-1.5 text-lotusPink"></i>Línea de Interacción (Contacto Directo Estudiante ↔ Profesora / Tallerista)
+            </span>
+          </div>
+
+          <!-- CAPA 3: INTERACCIONES VISIBLES (FRONTSTAGE DOCENTE Y TALLERISTA) -->
+          <div data-layer="front" class="bp-layer-row grid grid-cols-[195px_repeat(5,minmax(190px,1fr))] gap-3 items-stretch">
+            <div class="rounded-2xl bg-biolumCobalt/30 border border-biolumCobalt/45 p-3.5 flex flex-col justify-between">
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-sky-300 block">Capa 03 · Frontstage</span>
+                <h4 class="font-serif text-base font-semibold text-starlight mt-0.5">Profesora &amp; Tallerista Visibles</h4>
+              </div>
+              <p class="text-[11px] text-mistText mt-2">Acompañamiento directo en el salón.</p>
+            </div>
+
+            <button onclick="selectCell('fs1')" id="cell-fs1" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-lotusPink block mb-1">Profesora · Lectura</span>
+              <p class="text-xs text-starlight leading-snug">Detecta tensión en el curso y activa el espacio preventivo antes del conflicto.</p>
+            </button>
+
+            <button onclick="selectCell('fs2')" id="cell-fs2" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-sky-300 block mb-1">Tallerista · Contención</span>
+              <p class="text-xs text-starlight leading-snug">Abre el círculo de escucha, valida todas las emociones y elimina el tono punitivo.</p>
+            </button>
+
+            <button onclick="selectCell('fs3')" id="cell-fs3" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-teal-200 block mb-1">Equipo · Facilitación</span>
+              <p class="text-xs text-starlight leading-snug">Moderan los dilemas proyectados y guían la reflexión sobre las 4 materias de vida.</p>
+            </button>
+
+            <button onclick="selectCell('fs4')" id="cell-fs4" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-lotusSoft block mb-1">Equipo · Cierre</span>
+              <p class="text-xs text-starlight leading-snug">Lideran el ejercicio de calma somática y consolidan los acuerdos en el mural.</p>
+            </button>
+
+            <button onclick="selectCell('fs5')" id="cell-fs5" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-emerald-200 block mb-1">Profesora · Sostén</span>
+              <p class="text-xs text-starlight leading-snug">Recuerda los acuerdos en sus clases diarias y media roces menores con empatía.</p>
+            </button>
+          </div>
+
+          <!-- LÍNEA DE VISIBILIDAD -->
+          <div data-layer="back" class="bp-layer-row bp-divider div-visibility">
+            <span class="mx-3 px-4 py-1 rounded-full bg-midnightSapphire text-lavenderGlow text-[11px] font-bold uppercase tracking-wider border border-lavenderGlow/65 shadow-[0_0_15px_rgba(150,129,217,0.35)]">
+              <i class="fa-solid fa-eye-slash mr-1.5 text-lavenderGlow"></i>Línea de Visibilidad (Procesos Internos Invisibles para el Estudiante)
+            </span>
+          </div>
+
+          <!-- CAPA 4: PROCESOS INTERNOS (BACKSTAGE) -->
+          <div data-layer="back" class="bp-layer-row grid grid-cols-[195px_repeat(5,minmax(190px,1fr))] gap-3 items-stretch">
+            <div class="rounded-2xl bg-lagoonTeal/25 border border-lagoonTeal/45 p-3.5 flex flex-col justify-between">
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-teal-200 block">Capa 04 · Backstage</span>
+                <h4 class="font-serif text-base font-semibold text-starlight mt-0.5">Procesos Internos Docentes</h4>
+              </div>
+              <p class="text-[11px] text-mistText mt-2">Coordinación previa y posterior.</p>
+            </div>
+
+            <button onclick="selectCell('bs1')" id="cell-bs1" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-lotusPink block mb-1">Ficha de Clima (2 min)</span>
+              <p class="text-xs text-starlight leading-snug">La profesora registra detonantes generales del grupo (sin exponer nombres).</p>
+            </button>
+
+            <button onclick="selectCell('bs2')" id="cell-bs2" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-sky-300 block mb-1">Ajuste de Ritmo</span>
+              <p class="text-xs text-starlight leading-snug">Tallerista calibra la dinámica inicial según la agitación o apatía del salón.</p>
+            </button>
+
+            <button onclick="selectCell('bs3')" id="cell-bs3" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-teal-200 block mb-1">Curaduría de Casos</span>
+              <p class="text-xs text-starlight leading-snug">Selección del dilema más pertinente para trabajar conciencia o responsabilidad.</p>
+            </button>
+
+            <button onclick="selectCell('bs4')" id="cell-bs4" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-lotusSoft block mb-1">Detección de Alertas</span>
+              <p class="text-xs text-starlight leading-snug">Revisión discreta de señales de vulnerabilidad que requieran orientación escolar.</p>
+            </button>
+
+            <button onclick="selectCell('bs5')" id="cell-bs5" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-emerald-200 block mb-1">Bitácora Docente</span>
+              <p class="text-xs text-starlight leading-snug">Balance breve profesora–tallerista sobre reducción de explosiones emocionales.</p>
+            </button>
+          </div>
+
+          <!-- LÍNEA DE INTERACCIÓN INTERNA -->
+          <div data-layer="ia" class="bp-layer-row bp-divider div-internal">
+            <span class="mx-3 px-4 py-1 rounded-full bg-pondEmerald text-teal-200 text-[11px] font-bold uppercase tracking-wider border border-lagoonTeal/75 shadow-[0_0_15px_rgba(44,123,145,0.4)]">
+              <i class="fa-solid fa-microchip mr-1.5 text-teal-300"></i>Línea de Interacción Interna (Soporte Tecnológico e Inteligencia Artificial)
+            </span>
+          </div>
+
+          <!-- CAPA 5: SOPORTE Y ASISTENCIA DE INTELIGENCIA ARTIFICIAL -->
+          <div data-layer="ia" class="bp-layer-row grid grid-cols-[195px_repeat(5,minmax(190px,1fr))] gap-3 items-stretch">
+            <div class="rounded-2xl bg-pondEmerald/60 border border-lagoonTeal/50 p-3.5 flex flex-col justify-between">
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-200 block">Capa 05 · Soporte IA</span>
+                <h4 class="font-serif text-base font-semibold text-starlight mt-0.5">Asistente IA &amp; Recursos</h4>
+              </div>
+              <p class="text-[11px] text-mistText mt-2">Infraestructura pedagógica y ética.</p>
+            </div>
+
+            <button onclick="selectCell('sp1')" id="cell-sp1" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-lotusPink block mb-1"><i class="fa-solid fa-chart-pie mr-1"></i>IA · Síntesis de Clima</span>
+              <p class="text-xs text-starlight leading-snug">Agrupa anónimamente las tarjetas del buzón para identificar emociones dominantes.</p>
+            </button>
+
+            <button onclick="selectCell('sp2')" id="cell-sp2" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-sky-300 block mb-1"><i class="fa-solid fa-book mr-1"></i>Currículo Walsch</span>
+              <p class="text-xs text-starlight leading-snug">Banco de guías vivenciales sobre las 4 materias para la vida (Walsch, 1997).</p>
+            </button>
+
+            <button onclick="selectCell('sp3')" id="cell-sp3" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-teal-200 block mb-1"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i>IA · Generador Dilemas</span>
+              <p class="text-xs text-starlight leading-snug">Crea historias y diálogos adaptados a 12–15 años sin exponer intimidad de alumnos.</p>
+            </button>
+
+            <button onclick="selectCell('sp4')" id="cell-sp4" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-lotusSoft block mb-1"><i class="fa-solid fa-shield-heart mr-1"></i>Ruta Psicosocial</span>
+              <p class="text-xs text-starlight leading-snug">Protocolo institucional de derivación a psicología escolar en crisis agudas.</p>
+            </button>
+
+            <button onclick="selectCell('sp5')" id="cell-sp5" class="bp-cell text-left rounded-2xl p-3.5">
+              <span class="text-[11px] font-semibold text-emerald-200 block mb-1"><i class="fa-solid fa-seedling mr-1"></i>IA · Evolución Jardín</span>
+              <p class="text-xs text-starlight leading-snug">Tablero de evolución del aula para iterar el servicio (Shostack, 1984; Norman, 2013).</p>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- INSPECTOR INTERACTIVO DE CELDAS -->
+      <div class="garden-card rounded-3xl p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div class="flex items-start gap-4">
+          <div id="insp-icon" class="w-12 h-12 rounded-2xl bg-gradient-to-br from-lavenderGlow/35 to-lotusPink/35 border border-lotusPink/50 flex items-center justify-center text-lotusSoft text-lg shrink-0">
+            <i class="fa-solid fa-spa"></i>
+          </div>
+          <div>
+            <div class="flex flex-wrap items-center gap-2 mb-1">
+              <span id="insp-tag" class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-royalViolet text-lotusSoft border border-lavenderGlow/40">Detalle del Touchpoint</span>
+              <span id="insp-stage" class="text-xs text-mistText">Selecciona cualquier tarjeta de la matriz superior</span>
+            </div>
+            <h3 id="insp-title" class="font-serif text-xl sm:text-2xl font-semibold text-starlight">
+              Interacción Frontstage, Backstage e Inteligencia Artificial
+            </h3>
+            <p id="insp-desc" class="text-xs sm:text-sm text-mistText leading-relaxed mt-1 max-w-4xl">
+              Haz clic sobre cualquier bloque del Service Blueprint para visualizar cómo se articulan los estudiantes (12–15 años), las profesoras, los talleristas y el Asistente de IA para prevenir momentos de explosión emocional en el salón.
+            </p>
+          </div>
+        </div>
+        <div class="lg:w-80 shrink-0 rounded-2xl bg-midnightSapphire/80 border border-lagoonTeal/45 p-4">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-teal-300 block mb-1">
+            <i class="fa-solid fa-sparkles mr-1"></i>Propósito Preventivo
+          </span>
+          <p id="insp-purpose" class="text-xs text-starlight leading-relaxed">
+            Cultivar cada “materia para la vida” en el momento oportuno transforma la reactividad impulsiva en diálogo consciente.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 4: FALLAS CRÍTICAS Y SOLUCIONES (FAIL POINTS)                 -->
+    <!-- ===================================================================== -->
+    <section id="fallas" class="space-y-5">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-lotusPink">04 · Fallas Críticas y Soluciones</span>
+        <h2 class="font-serif text-3xl font-semibold text-starlight">
+          Puntos críticos de riesgo en el aula y cómo los resuelve el diseño
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- Falla 1 -->
+        <div class="garden-card rounded-3xl p-6 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-200 text-xs font-bold">
+              <i class="fa-solid fa-triangle-exclamation mr-1.5"></i>Falla Crítica 01 · Resistencia o burla grupal
+            </span>
+            <span class="text-xs text-mistText">Etapa 02 · Apertura</span>
+          </div>
+          <p class="text-xs sm:text-sm text-mistText leading-relaxed">
+            <strong class="text-white">Riesgo:</strong> En adolescentes de 12 a 15 años, el miedo al juicio de sus pares puede generar burlas, silencio defensivo o rechazo si sienten la dinámica infantil o moralista.
+          </p>
+          <div class="rounded-2xl bg-pondEmerald/55 border border-lagoonTeal/50 p-3.5">
+            <p class="text-xs sm:text-sm text-starlight leading-relaxed">
+              <strong class="text-teal-300"><i class="fa-solid fa-shield-check mr-1"></i>Solución de Diseño:</strong> Uso de participación anónima inicial (Buzón del Jardín) y dilemas en tercera persona generados por IA con lenguaje auténtico de su edad, eliminando cualquier sermón o exposición forzada.
+            </p>
+          </div>
+        </div>
+
+        <!-- Falla 2 -->
+        <div class="garden-card rounded-3xl p-6 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-200 text-xs font-bold">
+              <i class="fa-solid fa-triangle-exclamation mr-1.5"></i>Falla Crítica 02 · Desbordamiento emocional agudo
+            </span>
+            <span class="text-xs text-mistText">Etapa 03 · Exploración</span>
+          </div>
+          <p class="text-xs sm:text-sm text-mistText leading-relaxed">
+            <strong class="text-white">Riesgo:</strong> Que un estudiante detone una crisis de llanto, rabia intensa o ataque de ansiedad al tocar un tema sensible durante el círculo de diálogo.
+          </p>
+          <div class="rounded-2xl bg-pondEmerald/55 border border-lagoonTeal/50 p-3.5">
+            <p class="text-xs sm:text-sm text-starlight leading-relaxed">
+              <strong class="text-teal-300"><i class="fa-solid fa-shield-check mr-1"></i>Solución de Diseño:</strong> Protocolo dual: la profesora acompaña al estudiante al Rincón de Calma con técnicas de regulación somática mientras el tallerista contiene al grupo, activando la ruta con psicología escolar si se requiere.
+            </p>
+          </div>
+        </div>
+
+        <!-- Falla 3 -->
+        <div class="garden-card rounded-3xl p-6 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-200 text-xs font-bold">
+              <i class="fa-solid fa-triangle-exclamation mr-1.5"></i>Falla Crítica 03 · Sobrecarga de la profesora
+            </span>
+            <span class="text-xs text-mistText">Etapa 01 · Backstage</span>
+          </div>
+          <p class="text-xs sm:text-sm text-mistText leading-relaxed">
+            <strong class="text-white">Riesgo:</strong> Que las profesoras perciban el programa como más trabajo administrativo o planeación extra dentro de su ya saturada carga académica.
+          </p>
+          <div class="rounded-2xl bg-pondEmerald/55 border border-lagoonTeal/50 p-3.5">
+            <p class="text-xs sm:text-sm text-starlight leading-relaxed">
+              <strong class="text-teal-300"><i class="fa-solid fa-shield-check mr-1"></i>Solución de Diseño:</strong> Ficha diagnóstica de máximo 2 minutos y Asistente de IA que genera automáticamente los casos, preguntas guía y síntesis de acuerdos listos para proyectar.
+            </p>
+          </div>
+        </div>
+
+        <!-- Falla 4 -->
+        <div class="garden-card rounded-3xl p-6 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="px-3 py-1 rounded-full bg-rose-500/20 border border-rose-400/40 text-rose-200 text-xs font-bold">
+              <i class="fa-solid fa-triangle-exclamation mr-1.5"></i>Falla Crítica 04 · Efecto “taller aislado”
+            </span>
+            <span class="text-xs text-mistText">Etapa 05 · Transferencia</span>
+          </div>
+          <p class="text-xs sm:text-sm text-mistText leading-relaxed">
+            <strong class="text-white">Riesgo:</strong> Que los aprendizajes emocionales se queden solo en la hora del tallerista y no se apliquen cuando surge una pelea en matemáticas o en el descanso.
+          </p>
+          <div class="rounded-2xl bg-pondEmerald/55 border border-lagoonTeal/50 p-3.5">
+            <p class="text-xs sm:text-sm text-starlight leading-relaxed">
+              <strong class="text-teal-300"><i class="fa-solid fa-shield-check mr-1"></i>Solución de Diseño:</strong> Tangibilización permanente en el aula mediante el Mural de Acuerdos y la tarjeta física de “Pausa Consciente” validada por todas las profesoras del grado.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 5: INTEGRACIÓN CON INTELIGENCIA ARTIFICIAL & MOCKUPS          -->
+    <!-- ===================================================================== -->
+    <section id="ia-mockups" class="space-y-6">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-lotusPink">05 · Integración con la Inteligencia Artificial &amp; Mockups del Sistema</span>
+        <h2 class="font-serif text-3xl font-semibold text-starlight">
+          La IA como Copiloto Pedagógico detrás del Jardín del Aula
+        </h2>
+        <p class="text-xs sm:text-sm text-mistText mt-1 max-w-4xl">
+          En coherencia con el enfoque ético del proyecto, la IA no evalúa ni diagnostica psicológicamente a los adolescentes: asiste a talleristas y profesoras para personalizar las “materias para la vida” según el clima emocional del grupo.
+        </p>
+      </div>
+
+      <!-- 3 Pilares de la IA -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="garden-card rounded-3xl p-5">
+          <span class="text-xs font-bold uppercase tracking-wider text-lavenderGlow block mb-1">Pilar IA 01 · Empatía Segura</span>
+          <h3 class="font-serif text-xl font-semibold text-starlight mb-2">Generador de Dilemas Adaptados</h3>
+          <p class="text-xs text-mistText leading-relaxed">
+            Transforma el detonante reportado por la profesora (ej. exclusión en grupos de trabajo o rumores) en historias ficticias cercanas a jóvenes de 12–15 años, protegiendo su privacidad.
+          </p>
+        </div>
+
+        <div class="garden-card rounded-3xl p-5">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-300 block mb-1">Pilar IA 02 · Lectura del Jardín</span>
+          <h3 class="font-serif text-xl font-semibold text-starlight mb-2">Síntesis de Clima Emocional</h3>
+          <p class="text-xs text-mistText leading-relaxed">
+            Procesa las tarjetas anónimas del Termómetro del Aula y sugiere qué “materia para la vida” (Conciencia, Honestidad, Responsabilidad o Resolución) requiere riego prioritario esa semana.
+          </p>
+        </div>
+
+        <div class="garden-card rounded-3xl p-5">
+          <span class="text-xs font-bold uppercase tracking-wider text-teal-300 block mb-1">Pilar IA 03 · Comunicación No Violenta</span>
+          <h3 class="font-serif text-xl font-semibold text-starlight mb-2">Simulador de Respuestas Conscientes</h3>
+          <p class="text-xs text-mistText leading-relaxed">
+            Durante el taller, proyecta bifurcaciones de diálogo donde los estudiantes comparan el desenlace de reaccionar desde el impulso vs. responder desde la responsabilidad.
+          </p>
+        </div>
+      </div>
+
+      <!-- MOCKUPS VISUALES DEL SISTEMA EN ACCIÓN -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- MOCKUP A: Panel Copiloto IA para Tallerista y Profesora -->
+        <div class="rounded-3xl bg-[#051238] border border-lavenderGlow/45 p-5 shadow-2xl">
+          <div class="flex items-center justify-between pb-3 mb-4 border-b border-lavenderGlow/20">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-lotusPink"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-lavenderGlow"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-lagoonTeal"></span>
+              <span class="text-xs font-semibold text-mistText ml-2">Mockup 01 · Copiloto IA Docente (Backstage)</span>
+            </div>
+            <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-royalViolet text-lotusSoft">Grado 8°B · 13–14 años</span>
+          </div>
+
+          <div class="space-y-3.5">
+            <div class="rounded-2xl bg-midnightSapphire/90 border border-biolumCobalt/40 p-3.5">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-sky-300">Pulso del Jardín (Buzón Anónimo · 28 estudiantes)</span>
+                <span class="text-[11px] text-lotusPink font-semibold">Alerta Preventiva Media</span>
+              </div>
+              <div class="grid grid-cols-3 gap-2 text-center mt-2">
+                <div class="rounded-xl bg-royalViolet/50 p-2">
+                  <span class="text-base font-bold text-starlight block">46%</span>
+                  <span class="text-[10px] text-mistText">Frustración / Presión</span>
+                </div>
+                <div class="rounded-xl bg-lagoonTeal/35 p-2">
+                  <span class="text-base font-bold text-starlight block">32%</span>
+                  <span class="text-[10px] text-mistText">Enojo contenido</span>
+                </div>
+                <div class="rounded-xl bg-pondEmerald/60 p-2">
+                  <span class="text-base font-bold text-starlight block">22%</span>
+                  <span class="text-[10px] text-mistText">Calma / Apertura</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-2xl bg-gradient-to-r from-royalViolet/55 to-pondEmerald/55 border border-lotusPink/35 p-3.5">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-lotusPink block mb-1">
+                <i class="fa-solid fa-sparkles mr-1"></i>Sugerencia IA · Materia: Responsabilidad y Resolución
+              </span>
+              <p class="text-xs text-starlight leading-relaxed">
+                <strong>Dilema generado para proyectar:</strong> “Un equipo de clase pierde puntos por un malentendido en el chat del grupo y dos compañeros están a punto de insultarse frente al salón. ¿Cómo detener la explosión en 30 segundos?”
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOCKUP B: Pantalla Interactiva del Aula (Frontstage Estudiante) -->
+        <div class="rounded-3xl bg-[#051238] border border-lagoonTeal/50 p-5 shadow-2xl">
+          <div class="flex items-center justify-between pb-3 mb-4 border-b border-lagoonTeal/25">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-teal-300"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-biolumCobalt"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-lotusPink"></span>
+              <span class="text-xs font-semibold text-mistText ml-2">Mockup 02 · Pantalla del Aula &amp; Simulador (Frontstage)</span>
+            </div>
+            <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-pondEmerald text-teal-200">Proyección en Círculo</span>
+          </div>
+
+          <div class="space-y-3">
+            <div class="rounded-2xl bg-midnightSapphire/90 border border-lavenderGlow/35 p-3.5">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-lotusSoft block mb-1">Paso 1 · Reconocer la Semilla (Conciencia)</span>
+              <p class="text-xs text-starlight">“Cuando siento que me juzgan injustamente en clase, mi cuerpo reacciona con calor en la cara y ganas de gritar.”</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="rounded-2xl bg-rose-950/45 border border-rose-400/35 p-3">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-rose-300 block mb-1">Ruta A · Reacción Impulsiva</span>
+                <p class="text-xs text-mistText">“¡Tú siempre arruinas todo, cállate!” → Escalada de conflicto y sanción.</p>
+              </div>
+              <div class="rounded-2xl bg-pondEmerald/75 border border-teal-300/50 p-3">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-teal-200 block mb-1">Ruta B · Floración Consciente</span>
+                <p class="text-xs text-starlight">“Pido 1 minuto de pausa; estoy molesto por la nota y quiero que lo hablemos con calma.”</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 6: ¿CÓMO SE SIENTE EL ESTUDIANTE EN CADA ETAPA?               -->
+    <!-- ===================================================================== -->
+    <section id="emociones" class="garden-card rounded-3xl p-6 sm:p-8 space-y-6 relative overflow-hidden">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-dew-leaf">06 · Curva Emocional del Estudiante (12–15 años)</span>
+          <h2 class="font-serif text-3xl font-semibold text-starlight">
+            ¿Cómo se siente el estudiante en cada etapa sobre el lago?
+          </h2>
+        </div>
+        <span class="text-xs text-mistText">Evolución desde la tensión reactiva hasta la calma, los árboles y el agua serena</span>
+      </div>
+
+      <!-- Visualización SVG de la curva emocional fusionada con lago, nenúfares y orilla arbolada -->
+      <div class="w-full overflow-x-auto rounded-2xl bg-[#071E47]/75 border border-meadow-mint/25 p-3">
+        <svg class="w-full min-w-[780px] h-48" viewBox="0 0 1000 175" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lotusWave" x1="0" y1="0" x2="1000" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#E29BC5"/>
+              <stop offset="30%" stop-color="#9681D9"/>
+              <stop offset="65%" stop-color="#52B788"/>
+              <stop offset="100%" stop-color="#A8E6CF"/>
+            </linearGradient>
+            <linearGradient id="waveFill" x1="500" y1="20" x2="500" y2="145" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#52B788" stop-opacity="0.34"/>
+              <stop offset="100%" stop-color="#0F4456" stop-opacity="0.06"/>
+            </linearGradient>
+            <linearGradient id="lakeWaterGrad" x1="500" y1="125" x2="500" y2="175" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#1B5E4A" stop-opacity="0.45"/>
+              <stop offset="100%" stop-color="#082674" stop-opacity="0.85"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Espejo de agua del lago en la base -->
+          <rect x="0" y="128" width="1000" height="47" fill="url(#lakeWaterGrad)"/>
+          <line x1="30" y1="142" x2="260" y2="142" stroke="#A8E6CF" stroke-opacity="0.22" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="340" y1="152" x2="640" y2="152" stroke="#9681D9" stroke-opacity="0.25" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="690" y1="145" x2="970" y2="145" stroke="#F3C6E2" stroke-opacity="0.24" stroke-width="1.5" stroke-linecap="round"/>
+
+          <!-- Siluetas de árboles y arbustos en la orilla -->
+          <ellipse cx="85" cy="128" rx="48" ry="18" fill="#1B5E4A" fill-opacity="0.55"/>
+          <ellipse cx="295" cy="128" rx="56" ry="16" fill="#2E8B6E" fill-opacity="0.45"/>
+          <ellipse cx="705" cy="128" rx="62" ry="18" fill="#1B5E4A" fill-opacity="0.52"/>
+          <ellipse cx="915" cy="128" rx="52" ry="20" fill="#2E8B6E" fill-opacity="0.5"/>
+
+          <!-- Curva de floración emocional -->
+          <path d="M90 112 C 195 106, 235 84, 295 80 C 375 74, 420 56, 500 50 C 590 44, 635 34, 705 30 C 790 25, 845 20, 910 18 L 910 128 L 90 128 Z" fill="url(#waveFill)"/>
+          <path d="M90 112 C 195 106, 235 84, 295 80 C 375 74, 420 56, 500 50 C 590 44, 635 34, 705 30 C 790 25, 845 20, 910 18" stroke="url(#lotusWave)" stroke-width="4" stroke-linecap="round"/>
+
+          <!-- Nenúfares y flores de loto luminosas sobre el lago -->
+          <g>
+            <ellipse cx="185" cy="148" rx="26" ry="6.5" fill="#2E8B6E" fill-opacity="0.72"/>
+            <path d="M185 133C183 138 183 143 185 147C187 143 187 138 185 133Z" fill="#FFF0F9"/>
+            <path d="M185 147C180 145 177 141 177 137C181 139 183.5 142.5 185 147ZM185 147C190 145 193 141 193 137C189 139 186.5 142.5 185 147Z" fill="#E598D8"/>
+          </g>
+
+          <g>
+            <ellipse cx="485" cy="156" rx="34" ry="8" fill="#1F6E5D" fill-opacity="0.82"/>
+            <path d="M485 136C482.5 142 482.5 149 485 155C487.5 149 487.5 142 485 136Z" fill="#FFF0F9"/>
+            <path d="M485 155C479 152.5 475 147.5 475 142C480 144 483 149 485 155ZM485 155C491 152.5 495 147.5 495 142C490 144 487 149 485 155Z" fill="#E598D8"/>
+            <path d="M485 155C476 155 470 151.5 468 147C474 147.5 480 150.5 485 155ZM485 155C494 155 500 151.5 502 147C496 147.5 490 150.5 485 155Z" fill="#9681D9"/>
+          </g>
+
+          <g>
+            <ellipse cx="815" cy="152" rx="36" ry="8.5" fill="#2E8B6E" fill-opacity="0.78"/>
+            <path d="M815 131C812 138 812 145 815 151C818 145 818 138 815 131Z" fill="#FFF0F9"/>
+            <path d="M815 151C808 148 804 143 804 137C809.5 139.5 812.5 145 815 151ZM815 151C822 148 826 143 826 137C820.5 139.5 817.5 145 815 151Z" fill="#E598D8"/>
+            <path d="M815 151C805 151 798 147.5 796 142.5C803 143 809 146.5 815 151ZM815 151C825 151 832 147.5 834 142.5C827 143 821 146.5 815 151Z" fill="#9681D9"/>
+          </g>
+
+          <!-- Nodos de las 5 etapas -->
+          <circle cx="90" cy="112" r="8" fill="#E29BC5" stroke="#082674" stroke-width="3"/>
+          <circle cx="295" cy="80" r="8" fill="#9681D9" stroke="#082674" stroke-width="3"/>
+          <circle cx="500" cy="50" r="8" fill="#52B788" stroke="#082674" stroke-width="3"/>
+          <circle cx="705" cy="30" r="8" fill="#2E8B6E" stroke="#082674" stroke-width="3"/>
+          <circle cx="910" cy="18" r="9" fill="#A8E6CF" stroke="#082674" stroke-width="3"/>
+        </svg>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="rounded-2xl bg-midnightSapphire/80 border border-lotusPink/35 p-4">
+          <span class="text-[11px] font-bold text-lotusPink uppercase">01 · Semilla</span>
+          <h3 class="font-serif text-lg font-semibold text-starlight mt-0.5">Tensión y Cierre</h3>
+          <p class="text-xs text-mistText italic mt-1.5">“Siento rabia acumulada, pero si hablo me van a regañar o se van a burlar.”</p>
+        </div>
+
+        <div class="rounded-2xl bg-midnightSapphire/80 border border-lavenderGlow/35 p-4">
+          <span class="text-[11px] font-bold text-lavenderGlow uppercase">02 · Brote</span>
+          <h3 class="font-serif text-lg font-semibold text-starlight mt-0.5">Alivio y Apertura</h3>
+          <p class="text-xs text-mistText italic mt-1.5">“Qué alivio poder decir cómo me siento sin que nadie me ponga una nota por eso.”</p>
+        </div>
+
+        <div class="rounded-2xl bg-midnightSapphire/80 border border-biolumCobalt/45 p-4">
+          <span class="text-[11px] font-bold text-sky-300 uppercase">03 · Capullo</span>
+          <h3 class="font-serif text-lg font-semibold text-starlight mt-0.5">Empatía y Curiosidad</h3>
+          <p class="text-xs text-mistText italic mt-1.5">“El caso en pantalla parece sacado de nuestro salón; entiendo por qué el otro reaccionó así.”</p>
+        </div>
+
+        <div class="rounded-2xl bg-midnightSapphire/80 border border-lagoonTeal/45 p-4">
+          <span class="text-[11px] font-bold text-teal-200 uppercase">04 · Floración</span>
+          <h3 class="font-serif text-lg font-semibold text-starlight mt-0.5">Calma y Agencia</h3>
+          <p class="text-xs text-mistText italic mt-1.5">“Ya sé qué hacer cuando sienta que voy a explotar: pedir mi pausa y respirar.”</p>
+        </div>
+
+        <div class="rounded-2xl bg-midnightSapphire/80 border border-emerald-300/45 p-4">
+          <span class="text-[11px] font-bold text-emerald-300 uppercase">05 · Ecosistema</span>
+          <h3 class="font-serif text-lg font-semibold text-starlight mt-0.5">Confianza y Pertenencia</h3>
+          <p class="text-xs text-mistText italic mt-1.5">“Nuestro salón se siente más tranquilo; podemos hablar los problemas sin pelear.”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 7: ¿CÓMO SABEMOS QUE EL SERVICIO FUNCIONA? (MÉTRICAS)          -->
+    <!-- ===================================================================== -->
+    <section id="metricas" class="space-y-5">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-lotusPink">07 · Evaluación e Impacto</span>
+        <h2 class="font-serif text-3xl font-semibold text-starlight">
+          ¿Cómo sabemos que el servicio funciona?
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="garden-card rounded-3xl p-5">
+          <div class="w-10 h-10 rounded-xl bg-lotusPink/20 border border-lotusPink/45 flex items-center justify-center text-lotusPink mb-3">
+            <i class="fa-solid fa-arrow-trend-down"></i>
+          </div>
+          <span class="text-xs font-bold text-lotusPink uppercase tracking-wider">Indicador 01 · Convivencia</span>
+          <h3 class="font-serif text-xl font-semibold text-starlight mt-1">Menos explosiones en el aula</h3>
+          <p class="text-xs text-mistText leading-relaxed mt-2">
+            Disminución measurable de interrupciones de clase, discusiones agresivas y reportes disciplinarios registrados en la bitácora docente mensual.
+          </p>
+        </div>
+
+        <div class="garden-card rounded-3xl p-5">
+          <div class="w-10 h-10 rounded-xl bg-lavenderGlow/20 border border-lavenderGlow/45 flex items-center justify-center text-lavenderGlow mb-3">
+            <i class="fa-solid fa-comment-heart"></i>
+          </div>
+          <span class="text-xs font-bold text-lavenderGlow uppercase tracking-wider">Indicador 02 · Conciencia</span>
+          <h3 class="font-serif text-xl font-semibold text-starlight mt-1">Vocabulario emocional activo</h3>
+          <p class="text-xs text-mistText leading-relaxed mt-2">
+            Incremento en la capacidad de los estudiantes de 12–15 años para identificar y nombrar emociones específicas en su bitácora antes de actuar.
+          </p>
+        </div>
+
+        <div class="garden-card rounded-3xl p-5">
+          <div class="w-10 h-10 rounded-xl bg-lagoonTeal/25 border border-lagoonTeal/50 flex items-center justify-center text-teal-200 mb-3">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+          </div>
+          <span class="text-xs font-bold text-teal-300 uppercase tracking-wider">Indicador 03 · Autorregulación</span>
+          <h3 class="font-serif text-xl font-semibold text-starlight mt-1">Uso autónomo de pausas</h3>
+          <p class="text-xs text-mistText leading-relaxed mt-2">
+            Frecuencia con la que los propios adolescentes utilizan la tarjeta de “Pausa Consciente” o los acuerdos del mural sin intervención punitiva del adulto.
+          </p>
+        </div>
+
+        <div class="garden-card rounded-3xl p-5">
+          <div class="w-10 h-10 rounded-xl bg-biolumCobalt/25 border border-biolumCobalt/50 flex items-center justify-center text-sky-200 mb-3">
+            <i class="fa-solid fa-spa"></i>
+          </div>
+          <span class="text-xs font-bold text-sky-300 uppercase tracking-wider">Indicador 04 · Clima Escolar</span>
+          <h3 class="font-serif text-xl font-semibold text-starlight mt-1">Seguridad psicológica percibida</h3>
+          <p class="text-xs text-mistText leading-relaxed mt-2">
+            Mejora en el pulso anónimo del Termómetro del Jardín, reflejando mayor sensación de escucha, respeto mutuo y pertenencia en el salón.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- SECCIÓN 8: BIBLIOGRAFÍA (FORMATO APA 7.ª EDICIÓN)                     -->
+    <!-- ===================================================================== -->
+    <section id="bibliografia" class="garden-card rounded-3xl p-6 sm:p-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-5 border-b border-lavenderGlow/25">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-lotusPink">08 · Referentes Teóricos y Metodológicos</span>
+          <h2 class="font-serif text-3xl font-semibold text-starlight">Bibliografía (Formato APA 7.ª ed.)</h2>
+        </div>
+        <span class="text-xs text-mistText">Sustento de Diseño de Servicios, IA y Educación Consciente</span>
+      </div>
+
+      <ul class="space-y-3 text-xs sm:text-sm text-mistText leading-relaxed">
+        <li class="pl-6 -indent-6">
+          EuroLEAN+. (2018, 27 de agosto). <em class="text-starlight">Service Blueprint</em> [Video]. YouTube.
+        </li>
+        <li class="pl-6 -indent-6">
+          Kelley, T., &amp; Littman, J. (2001). <em class="text-starlight">The art of innovation: Lessons in creativity from IDEO, America’s leading design firm</em>. Currency/Doubleday.
+        </li>
+        <li class="pl-6 -indent-6">
+          Manovich, L. (2024). <em class="text-starlight">Unreliable Memories</em>. Apotheke.
+        </li>
+        <li class="pl-6 -indent-6">
+          Norman, D. (2013). <em class="text-starlight">The design of everyday things: Revised and expanded edition</em>. Basic Books.
+        </li>
+        <li class="pl-6 -indent-6">
+          Pauli, G. (2010). <em class="text-starlight">The blue economy: 10 years, 100 innovations, 100 million jobs</em>. Paradigm Publications.
+        </li>
+        <li class="pl-6 -indent-6">
+          PlaybooUX. (2019, 30 de julio). <em class="text-starlight">¿Qué es un plan de servicio?</em> [Video]. YouTube.
+        </li>
+        <li class="pl-6 -indent-6">
+          Shostack, G. L. (1984). Designing services that deliver. <em class="text-starlight">Harvard Business Review</em>, 62(1), 133–139.
+        </li>
+        <li class="pl-6 -indent-6">
+          Walsch, N. D. (1997). <em class="text-starlight">Conversaciones con Dios: Un diálogo extraordinario (Libro 2)</em>. Editorial Grijalbo.
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- HORIZONTE BOTÁNICO Y LAGO DE LOTOS REFLEJADOS AL PIE -->
+  <footer class="relative z-10 mt-10 lake-horizon-band pt-7 pb-7 px-4 sm:px-8 overflow-hidden">
+    <svg class="max-w-[1440px] mx-auto w-full h-20 mb-3 opacity-95" viewBox="0 0 1440 80" fill="none" preserveAspectRatio="none" aria-hidden="true">
+      <!-- Ondas del lago -->
+      <path d="M0 32 Q 360 16, 720 32 T 1440 32" stroke="#52B788" stroke-opacity="0.35" stroke-width="1.5"/>
+      <path d="M0 52 Q 360 66, 720 52 T 1440 52" stroke="#9681D9" stroke-opacity="0.35" stroke-width="1.5"/>
+
+      <!-- Nenúfar y Loto Izquierdo -->
+      <g transform="translate(220, 44)">
+        <ellipse cx="0" cy="14" rx="44" ry="10" fill="#1B5E4A" stroke="#52B788" stroke-opacity="0.5"/>
+        <path d="M0 -18 C-6 -6 -6 6 0 14 C6 6 6 -6 0 -18 Z" fill="#FFF0F9"/>
+        <path d="M0 14 C-14 8 -20 -2 -18 -11 C-10 -7 -4 3 0 14 Z" fill="#E598D8"/>
+        <path d="M0 14 C14 8 20 -2 18 -11 C10 -7 4 3 0 14 Z" fill="#E598D8"/>
+        <path d="M0 14 C-22 14 -34 7 -36 -2 C-24 -1 -12 5 0 14 Z" fill="#9681D9"/>
+        <path d="M0 14 C22 14 34 7 36 -2 C24 -1 12 5 0 14 Z" fill="#9681D9"/>
+      </g>
+
+      <!-- Nenúfar y Loto Central -->
+      <g transform="translate(720, 48)">
+        <ellipse cx="0" cy="15" rx="54" ry="12" fill="#2E8B6E" stroke="#A8E6CF" stroke-opacity="0.6"/>
+        <path d="M0 -22 C-7 -8 -7 7 0 15 C7 7 7 -8 0 -22 Z" fill="#FFF0F9"/>
+        <path d="M0 15 C-16 8 -24 -4 -22 -14 C-12 -9 -5 3 0 15 Z" fill="#E598D8"/>
+        <path d="M0 15 C16 8 24 -4 22 -14 C12 -9 5 3 0 15 Z" fill="#E598D8"/>
+        <path d="M0 15 C-28 15 -42 7 -45 -4 C-30 -3 -15 4 0 15 Z" fill="#9681D9"/>
+        <path d="M0 15 C28 15 42 7 45 -4 C30 -3 15 4 0 15 Z" fill="#9681D9"/>
+      </g>
+
+      <!-- Nenúfar y Loto Derecho -->
+      <g transform="translate(1210, 42)">
+        <ellipse cx="0" cy="14" rx="44" ry="10" fill="#1B5E4A" stroke="#52B788" stroke-opacity="0.5"/>
+        <path d="M0 -18 C-6 -6 -6 6 0 14 C6 6 6 -6 0 -18 Z" fill="#FFF0F9"/>
+        <path d="M0 14 C-14 8 -20 -2 -18 -11 C-10 -7 -4 3 0 14 Z" fill="#E598D8"/>
+        <path d="M0 14 C14 8 20 -2 18 -11 C10 -7 4 3 0 14 Z" fill="#E598D8"/>
+        <path d="M0 14 C-22 14 -34 7 -36 -2 C-24 -1 -12 5 0 14 Z" fill="#9681D9"/>
+        <path d="M0 14 C22 14 34 7 36 -2 C24 -1 12 5 0 14 Z" fill="#9681D9"/>
+      </g>
+    </svg>
+
+    <div class="max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-mistText">
+      <p><strong class="text-starlight">Ecosistema “Escuelas de la Vida”</strong> · Manejo Emocional Preventivo en el Aula (12–15 años)</p>
+      <p>Service Blueprint · Metodología Shostack (1984) &amp; Asistencia Pedagógica con IA</p>
+    </div>
+  </footer>
+
+  <!-- LÓGICA INTERACTIVA PARA INSPECCIONAR CADA TOUCHPOINT DEL BLUEPRINT -->
+  <script>
+    const cellInfo = {
+      ev1: {
+        tag: 'Evidencia Física · Etapa 01 (Semilla)',
+        stage: 'Detonante y Clima del Aula',
+        title: 'Buzón Anónimo del Jardín',
+        desc: 'Caja o tarjeta física en el aula donde los adolescentes depositan de forma anónima qué situación les genera tensión o malestar antes de iniciar la jornada o taller.',
+        purpose: 'Permite detectar señales tempranas de frustración sin exponer al estudiante frente a sus compañeros.',
+        icon: 'fa-envelope-open-text'
+      },
+      ev2: {
+        tag: 'Evidencia Física · Etapa 02 (Brote)',
+        stage: 'Apertura y Pausa Consciente',
+        title: 'Círculo de Diálogo y Termómetro del Estanque',
+        desc: 'Disposición circular del mobiliario acompañada de tarjetas botánicas ilustradas que ayudan a identificar emociones con precisión.',
+        purpose: 'Rompe la jerarquía rígida del salón tradicional y habilita un espacio seguro de honestidad (Walsch, 1997).',
+        icon: 'fa-circle-nodes'
+      },
+      ev3: {
+        tag: 'Evidencia Física · Etapa 03 (Capullo)',
+        stage: 'Exploración Guiada con IA',
+        title: 'Pantalla de Escenarios IA y Cartas de Materias de Vida',
+        desc: 'Proyección interactiva con historias ramificadas cercanas a adolescentes de 12–15 años y tarjetas con los 4 pilares: Conciencia, Honestidad, Responsabilidad y Resolución Pacífica.',
+        purpose: 'Permite ensayar respuestas empáticas en casos ficticios antes de enfrentar un conflicto real en clase.',
+        icon: 'fa-display'
+      },
+      ev4: {
+        tag: 'Evidencia Física · Etapa 04 (Floración)',
+        stage: 'Regulación y Acuerdos',
+        title: 'Bitácora Personal y Mural de Acuerdos del Salón',
+        desc: 'Cuadernillo personal donde cada joven registra sus herramientas de calma y mural visible en el aula con los compromisos colectivos del curso.',
+        purpose: 'Deja memoria tangible en el salón para sostener los acuerdos durante toda la semana escolar.',
+        icon: 'fa-book-bookmark'
+      },
+      ev5: {
+        tag: 'Evidencia Física · Etapa 05 (Ecosistema)',
+        stage: 'Transferencia Cotidiana',
+        title: 'Tarjeta de Pausa Consciente y Rincón de Calma',
+        desc: 'Señal visual acordada por el curso que cualquier estudiante puede activar durante una clase regular para tomar 60 segundos de regulación.',
+        purpose: 'Convierte el manejo emocional en un hábito cotidiano aceptado y respetado por todo el grupo.',
+        icon: 'fa-spa'
+      },
+      us1: {
+        tag: 'Estudiante (12–15 años) · Etapa 01',
+        stage: 'Detonante y Clima del Aula',
+        title: 'Acumulación de tensión académica o vincular',
+        desc: 'Los estudiantes viven presión por evaluaciones, rumores o roces grupales que habitualmente derivan en explosiones verbales o aislamiento.',
+        purpose: 'El servicio actúa preventivamente sobre el malestar cotidiano antes de que escale a agresión.',
+        icon: 'fa-user-graduate'
+      },
+      us2: {
+        tag: 'Estudiante (12–15 años) · Etapa 02',
+        stage: 'Apertura y Pausa Consciente',
+        title: 'Pausa consciente y nombramiento honesto',
+        desc: 'Detienen la rutina académica, respiran y ubican su emoción en el Termómetro del Jardín sin temor a burlas ni sanciones.',
+        purpose: 'Separar lo que siento de cómo actúo desactiva la impulsividad inmediata.',
+        icon: 'fa-pause-circle'
+      },
+      us3: {
+        tag: 'Estudiante (12–15 años) · Etapa 03',
+        stage: 'Exploración Guiada con IA',
+        title: 'Debate de dilemas y simulación de respuestas',
+        desc: 'En equipos, analizan conflictos escolares generados por la IA y eligen cómo responder desde la responsabilidad afectiva.',
+        purpose: 'Entrena la empatía y la comunicación no violenta en un entorno lúdico y seguro.',
+        icon: 'fa-users'
+      },
+      us4: {
+        tag: 'Estudiante (12–15 años) · Etapa 04',
+        stage: 'Regulación y Acuerdos',
+        title: 'Práctica de calma somática y pacto grupal',
+        desc: 'Practican técnicas breves de desactivación emocional y co-firman los acuerdos restaurativos del aula.',
+        purpose: 'Empodera a los adolescentes como protagonistas de su propia autorregulación.',
+        icon: 'fa-handshake-angle'
+      },
+      us5: {
+        tag: 'Estudiante (12–15 años) · Etapa 05',
+        stage: 'Transferencia Cotidiana',
+        title: 'Aplicación autónoma en clases y recreo',
+        desc: 'Ante un desacuerdo real en el día a día, utilizan la señal de pausa y el lenguaje aprendido para dialogar.',
+        purpose: 'Materializa el aprendizaje en una convivencia escolar más pacífica y empática.',
+        icon: 'fa-seedling'
+      },
+      fs1: {
+        tag: 'Frontstage · Etapa 01',
+        stage: 'Detonante y Clima del Aula',
+        title: 'Observación temprana por la Profesora de Aula',
+        desc: 'La profesora percibe cambios en el ánimo del curso o tensiones latentes y solicita el enfoque del siguiente taller.',
+        purpose: 'Conecta el programa directamente con las necesidades reales y actuales de cada salón.',
+        icon: 'fa-chalkboard-user'
+      },
+      fs2: {
+        tag: 'Frontstage · Etapa 02',
+        stage: 'Apertura y Pausa Consciente',
+        title: 'Apertura segura por el/la Tallerista',
+        desc: 'El tallerista establece reglas de confidencialidad y escucha empática, validando todas las emociones sin moralizar.',
+        purpose: 'Construye confianza psicológica indispensable en adolescentes de 12–15 años.',
+        icon: 'fa-hands-holding-circle'
+      },
+      fs3: {
+        tag: 'Frontstage · Etapa 03',
+        stage: 'Exploración Guiada con IA',
+        title: 'Facilitación vivencial con apoyo de proyección IA',
+        desc: 'Tallerista y profesora moderan el diálogo alrededor de los escenarios proyectados, conectando con las 4 materias para la vida.',
+        purpose: 'Combina la calidez humana del facilitador con la pertinencia narrativa generada por IA.',
+        icon: 'fa-comments'
+      },
+      fs4: {
+        tag: 'Frontstage · Etapa 04',
+        stage: 'Regulación y Acuerdos',
+        title: 'Guía de cierre y consolidación del Mural',
+        desc: 'El equipo facilitador conduce la práctica de regulación y sintetiza en el mural los compromisos acordados por el grupo.',
+        purpose: 'Asegura que cada sesión cierre con herramientas concretas y accionables.',
+        icon: 'fa-check-double'
+      },
+      fs5: {
+        tag: 'Frontstage · Etapa 05',
+        stage: 'Transferencia Cotidiana',
+        title: 'Acompañamiento diario de la Profesora',
+        desc: 'Durante la semana, la profesora valida el uso de la tarjeta de pausa y acompaña mediaciones breves en sus clases.',
+        purpose: 'Evita que el taller sea un evento aislado y lo convierte en cultura de aula.',
+        icon: 'fa-heart'
+      },
+      bs1: {
+        tag: 'Backstage · Etapa 01',
+        stage: 'Detonante y Clima del Aula',
+        title: 'Registro breve de clima (2 minutos)',
+        desc: 'La profesora marca en una ficha digital rápida los detonantes observados en el curso sin exponer nombres propios.',
+        purpose: 'Optimiza el tiempo docente y focaliza la intervención preventiva.',
+        icon: 'fa-clipboard-check'
+      },
+      bs2: {
+        tag: 'Backstage · Etapa 02',
+        stage: 'Apertura y Pausa Consciente',
+        title: 'Calibración de dinámica en tiempo real',
+        desc: 'Tallerista y profesora ajustan la actividad inicial según el nivel de agitación o cansancio detectado en el grupo.',
+        purpose: 'Adapta el servicio al estado real del aula (Shostack, 1984).',
+        icon: 'fa-sliders'
+      },
+      bs3: {
+        tag: 'Backstage · Etapa 03',
+        stage: 'Exploración Guiada con IA',
+        title: 'Curaduría de dilemas generados por el Copiloto IA',
+        desc: 'El tallerista selecciona y afina los escenarios creados por la IA para asegurar un tono empático y libre de juicios.',
+        purpose: 'Mantiene el criterio pedagógico humano sobre las sugerencias de la inteligencia artificial.',
+        icon: 'fa-wand-magic-sparkles'
+      },
+      bs4: {
+        tag: 'Backstage · Etapa 04',
+        stage: 'Regulación y Acuerdos',
+        title: 'Identificación discreta de alertas individuales',
+        desc: 'El equipo revisa si algún estudiante manifestó señales de vulnerabilidad profunda para activar acompañamiento psicosocial.',
+        purpose: 'Cuida integralmente al estudiante sin estigmatizarlo frente al grupo.',
+        icon: 'fa-user-shield'
+      },
+      bs5: {
+        tag: 'Backstage · Etapa 05',
+        stage: 'Transferencia Cotidiana',
+        title: 'Retroalimentación conjunta Profesora–Tallerista',
+        desc: 'Evaluación breve de la evolución del clima del salón para diseñar la siguiente sesión del jardín.',
+        purpose: 'Iteración continua del servicio basada en evidencia del aula (Norman, 2013).',
+        icon: 'fa-rotate'
+      },
+      sp1: {
+        tag: 'Soporte IA · Etapa 01',
+        stage: 'Detonante y Clima del Aula',
+        title: 'Síntesis anónima del Buzón del Jardín',
+        desc: 'El Asistente IA agrupa las tarjetas anónimas por categorías emocionales (frustración, enojo, exclusión) sin almacenar identidades.',
+        purpose: 'Entrega al tallerista un mapa claro del clima emocional antes de entrar al salón.',
+        icon: 'fa-chart-pie'
+      },
+      sp2: {
+        tag: 'Soporte Curricular · Etapa 02',
+        stage: 'Apertura y Pausa Consciente',
+        title: 'Banco Pedagógico “Materias para la Vida”',
+        desc: 'Guías estructuradas basadas en Walsch (1997) sobre conciencia, honestidad, responsabilidad y resolución pacífica.',
+        purpose: 'Asegura coherencia conceptual y pedagógica en todas las sesiones.',
+        icon: 'fa-book'
+      },
+      sp3: {
+        tag: 'Soporte IA · Etapa 03',
+        stage: 'Exploración Guiada con IA',
+        title: 'Motor de Simulación y Dilemas Adaptados (12–15 años)',
+        desc: 'Prompts curados con filtros éticos de protección a menores que generan historias ramificadas y alternativas de diálogo no violento.',
+        purpose: 'Personaliza el aprendizaje socioemocional sin invadir la privacidad de los jóvenes.',
+        icon: 'fa-microchip'
+      },
+      sp4: {
+        tag: 'Soporte Institucional · Etapa 04',
+        stage: 'Regulación y Acuerdos',
+        title: 'Ruta Institucional de Atención Psicosocial',
+        desc: 'Protocolo claro de articulación con orientación escolar y psicología cuando una situación excede el alcance preventivo del taller.',
+        purpose: 'Garantiza responsabilidad ética y respaldo institucional.',
+        icon: 'fa-kit-medical'
+      },
+      sp5: {
+        tag: 'Soporte IA · Etapa 05',
+        stage: 'Transferencia Cotidiana',
+        title: 'Tablero de Evolución del Jardín del Aula',
+        desc: 'Registro longitudinal de indicadores de convivencia y reducción de explosiones emocionales para evaluar impacto y escalabilidad.',
+        purpose: 'Demuestra con datos cualitativos y cuantitativos la efectividad del servicio.',
+        icon: 'fa-chart-line'
+      }
+    };
+
+    function selectCell(id) {
+      const info = cellInfo[id];
+      if (!info) return;
+
+      document.querySelectorAll('.bp-cell').forEach(el => el.classList.remove('active-cell'));
+      const current = document.getElementById('cell-' + id);
+      if (current) current.classList.add('active-cell');
+
+      document.getElementById('insp-tag').textContent = info.tag;
+      document.getElementById('insp-stage').textContent = info.stage;
+      document.getElementById('insp-title').textContent = info.title;
+      document.getElementById('insp-desc').textContent = info.desc;
+      document.getElementById('insp-purpose').textContent = info.purpose;
+      document.getElementById('insp-icon').innerHTML = `<i class="fa-solid ${info.icon}"></i>`;
+    }
+
+    function filterLayer(layer) {
+      ['all', 'front', 'back', 'ia'].forEach(key => {
+        const btn = document.getElementById('flt-' + key);
+        if (!btn) return;
+        if (key === layer) {
+          btn.className = 'px-2.5 py-1 rounded-xl text-[11px] font-semibold bg-royalViolet text-white transition cursor-pointer';
+        } else {
+          btn.className = 'px-2.5 py-1 rounded-xl text-[11px] font-medium text-mistText hover:text-white transition cursor-pointer';
+        }
+      });
+
+      document.querySelectorAll('.bp-layer-row').forEach(row => {
+        if (layer === 'all' || row.dataset.layer === layer) {
+          row.style.opacity = '1';
+          row.style.filter = 'none';
+        } else {
+          row.style.opacity = '0.28';
+          row.style.filter = 'grayscale(0.35)';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
